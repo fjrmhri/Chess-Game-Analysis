@@ -1,0 +1,51 @@
+.tombol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--jarak-2);
+  min-height: 44px;
+  padding: var(--jarak-2) var(--jarak-4);
+  border: var(--garis);
+  border-radius: var(--radius);
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+  font-family: var(--font-judul);
+  font-size: var(--ukuran-m);
+  font-weight: var(--tebal-judul);
+  text-transform: uppercase;
+  letter-spacing: var(--jarak-huruf-judul);
+  cursor: pointer;
+}
+
+.tombol--kedua {
+  background: var(--aksen-kedua);
+}
+
+.tombol--bahaya {
+  background: var(--bahaya);
+}
+
+.tombol--ghost {
+  background: transparent;
+  color: var(--tinta);
+  box-shadow: none;
+}
+
+.tombol--kecil {
+  min-height: 36px;
+  padding: var(--jarak-1) var(--jarak-3);
+  font-size: var(--ukuran-s);
+}
+
+.tombol--besar {
+  min-height: 56px;
+  padding: var(--jarak-3) var(--jarak-5);
+  font-size: var(--ukuran-l);
+}
+
+.tombol:disabled,
+.tombol[aria-disabled='true'] {
+  background: var(--permukaan-nonaktif);
+  color: var(--tinta-nonaktif);
+  border-style: dashed;
+}

@@ -1,0 +1,79 @@
+.tata-letak__kepala {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jarak-3) var(--jarak-5);
+  padding: var(--jarak-3) var(--jarak-4);
+  border-bottom: var(--garis);
+  background: var(--permukaan);
+}
+
+.tata-letak__merek {
+  padding: var(--jarak-1) var(--jarak-3);
+  border: var(--garis);
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+  font-family: var(--font-judul);
+  font-size: var(--ukuran-l);
+  font-weight: var(--tebal-judul);
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: var(--jarak-huruf-judul);
+  box-shadow: var(--bayangan-tekan);
+}
+
+.tata-letak__navigasi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jarak-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tata-letak__tautan {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--jarak-1) var(--jarak-2);
+  border: var(--tebal-garis-label) solid transparent;
+  color: var(--tinta);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--ukuran-s);
+}
+
+.tata-letak__tautan:hover {
+  border-color: var(--tinta);
+}
+
+.tata-letak__tautan[aria-current='page'] {
+  border-color: var(--tinta);
+  background: var(--aksen-ketiga);
+  color: var(--teks-pada-aksen);
+}
+
+.tata-letak__isi {
+  width: 100%;
+  max-width: var(--lebar-maks);
+  margin: 0 auto;
+  padding: var(--jarak-5) var(--jarak-4) var(--jarak-7);
+}
+
+.tata-letak__isi:focus {
+  outline: none;
+}
+
+.tata-letak__kaki {
+  padding: var(--jarak-4);
+  border-top: var(--garis);
+  font-size: var(--ukuran-s);
+}
+
+@media (min-width: 48rem) {
+  .tata-letak__isi {
+    padding-left: var(--jarak-6);
+    padding-right: var(--jarak-6);
+  }
+}

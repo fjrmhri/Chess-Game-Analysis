@@ -1,5 +1,7 @@
-import { Link, Outlet } from 'react-router'
+import { NavLink, Outlet } from 'react-router'
 import { URL_SUMBER } from '../konfigurasiAplikasi'
+import { PenyediaToast } from '../komponen/ui/Toast'
+import './TataLetak.css'
 
 const TAUTAN_NAVIGASI = [
   { ke: '/', label: 'Beranda' },
@@ -12,26 +14,34 @@ const TAUTAN_NAVIGASI = [
 
 export function TataLetak() {
   return (
-    <>
-      <header>
+    <PenyediaToast>
+      <a className="lewati-ke-konten" href="#konten">
+        Lewati ke konten
+      </a>
+      <header className="tata-letak__kepala">
+        <NavLink to="/" className="tata-letak__merek">
+          Telaah
+        </NavLink>
         <nav aria-label="Navigasi utama">
-          <ul>
+          <ul className="tata-letak__navigasi">
             {TAUTAN_NAVIGASI.map(({ ke, label }) => (
               <li key={ke}>
-                <Link to={ke}>{label}</Link>
+                <NavLink to={ke} end className="tata-letak__tautan">
+                  {label}
+                </NavLink>
               </li>
             ))}
           </ul>
         </nav>
       </header>
-      <main>
+      <main id="konten" className="tata-letak__isi" tabIndex={-1}>
         <Outlet />
       </main>
-      <footer>
+      <footer className="tata-letak__kaki">
         <p>
           Perangkat lunak bebas berlisensi GPL-3.0. <a href={URL_SUMBER}>Kode sumber</a>
         </p>
       </footer>
-    </>
+    </PenyediaToast>
   )
 }

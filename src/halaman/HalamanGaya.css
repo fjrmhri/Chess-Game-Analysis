@@ -1,0 +1,143 @@
+.gaya {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-7);
+}
+
+.gaya__kepala {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jarak-2);
+}
+
+.gaya__bagian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-4);
+  min-width: 0;
+}
+
+.gaya__bagian > h2 {
+  align-self: flex-start;
+  padding: var(--jarak-1) var(--jarak-3);
+  border: var(--garis);
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+  box-shadow: var(--bayangan);
+}
+
+.gaya__palet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: var(--jarak-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gaya__warna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-1);
+  min-width: 0;
+  padding: var(--jarak-2);
+  border: var(--garis);
+  background: var(--permukaan);
+  font-size: var(--ukuran-xs);
+  overflow-wrap: anywhere;
+}
+
+.gaya__contoh-warna {
+  display: block;
+  height: 3rem;
+  border: var(--tebal-garis-label) solid var(--tinta);
+}
+
+.gaya__tipografi {
+  padding: var(--jarak-4);
+  border: var(--garis);
+  background: var(--permukaan);
+  box-shadow: var(--bayangan);
+  overflow-wrap: anywhere;
+}
+
+.gaya__contoh-judul {
+  font-family: var(--font-judul);
+  font-weight: var(--tebal-judul);
+  text-transform: uppercase;
+  letter-spacing: var(--jarak-huruf-judul);
+  line-height: 1.1;
+}
+
+.gaya__contoh-judul--1 {
+  font-size: var(--ukuran-xxl);
+}
+
+.gaya__contoh-judul--2 {
+  font-size: var(--ukuran-xl);
+}
+
+.gaya__contoh-judul--3 {
+  font-size: var(--ukuran-l);
+}
+
+.gaya__matriks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-5);
+}
+
+.gaya__baris {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jarak-4);
+}
+
+.gaya__kepala-baris {
+  flex: none;
+  width: 4.5rem;
+  font-size: var(--ukuran-s);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.gaya__sel {
+  flex: none;
+}
+
+.gaya__deret {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jarak-3);
+}
+
+.gaya__kisi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--jarak-5);
+  align-items: start;
+}
+
+.gaya__ikon {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--jarak-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gaya__ikon-item {
+  display: flex;
+  align-items: center;
+  gap: var(--jarak-2);
+  padding: var(--jarak-2);
+  border: var(--garis);
+  background: var(--permukaan);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--ukuran-s);
+}

@@ -1,0 +1,39 @@
+.lencana {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jarak-1);
+  padding: 0 var(--jarak-2);
+  border: var(--tebal-garis-label) solid var(--tinta);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--ukuran-xs);
+  font-weight: 700;
+  line-height: 1.6;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lencana--netral {
+  background: var(--permukaan);
+  color: var(--tinta);
+}
+
+.lencana--utama {
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+}
+
+.lencana--kedua {
+  background: var(--aksen-kedua);
+  color: var(--teks-pada-aksen);
+}
+
+.lencana--ketiga {
+  background: var(--aksen-ketiga);
+  color: var(--teks-pada-aksen);
+}
+
+.lencana--bahaya {
+  background: var(--bahaya);
+  color: var(--teks-pada-aksen);
+}

@@ -1,0 +1,44 @@
+.lencana-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jarak-2);
+  padding: var(--jarak-1) var(--jarak-2);
+  border: var(--tebal-garis-label) solid var(--label-tinta);
+  color: var(--label-tinta);
+  font-family: var(--font-judul);
+  font-size: var(--ukuran-s);
+  font-weight: var(--tebal-judul);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lencana-label--brilliant {
+  background: var(--label-brilliant);
+}
+.lencana-label--great {
+  background: var(--label-great);
+}
+.lencana-label--best {
+  background: var(--label-best);
+}
+.lencana-label--excellent {
+  background: var(--label-excellent);
+}
+.lencana-label--good {
+  background: var(--label-good);
+}
+.lencana-label--book {
+  background: var(--label-book);
+}
+.lencana-label--inaccuracy {
+  background: var(--label-inaccuracy);
+}
+.lencana-label--mistake {
+  background: var(--label-mistake);
+}
+.lencana-label--miss {
+  background: var(--label-miss);
+}
+.lencana-label--blunder {
+  background: var(--label-blunder);
+}

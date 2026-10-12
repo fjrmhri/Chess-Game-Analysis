@@ -1,0 +1,100 @@
+/* Dipakai KolomIsian dan Pilihan */
+.medan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-1);
+  min-width: 0;
+}
+
+.medan__label {
+  font-family: var(--font-judul);
+  font-weight: var(--tebal-judul);
+  font-size: var(--ukuran-s);
+  text-transform: uppercase;
+  letter-spacing: var(--jarak-huruf-judul);
+}
+
+.medan__kontrol {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--jarak-2) var(--jarak-3);
+  border: var(--garis);
+  border-radius: var(--radius);
+  background: var(--permukaan);
+  color: var(--tinta);
+  font-family: var(--font-mono);
+  font-size: var(--ukuran-m);
+  box-shadow: var(--bayangan-tekan);
+}
+
+.medan__kontrol::placeholder {
+  color: var(--tinta-redup);
+  opacity: 1;
+}
+
+.medan__kontrol:focus-visible,
+.medan__kontrol[data-paksa-keadaan='fokus'] {
+  outline: var(--tebal-garis) solid var(--fokus);
+  outline-offset: 2px;
+  box-shadow: var(--bayangan);
+}
+
+.medan__kontrol:disabled {
+  background: var(--permukaan-nonaktif);
+  color: var(--tinta-nonaktif);
+  border-style: dashed;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.medan__kontrol[aria-invalid='true'] {
+  border-color: var(--tinta);
+  box-shadow: 4px 4px 0 var(--bahaya);
+}
+
+.medan__bantuan {
+  font-size: var(--ukuran-s);
+  color: var(--tinta-redup);
+}
+
+.medan__galat {
+  display: flex;
+  align-items: center;
+  gap: var(--jarak-1);
+  font-size: var(--ukuran-s);
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+.medan__galat::before {
+  content: '!';
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: var(--tebal-garis-label) solid var(--label-tinta);
+  background: var(--bahaya);
+  color: var(--label-tinta);
+  font-family: var(--font-judul);
+}
+
+select.medan__kontrol {
+  appearance: none;
+  padding-right: var(--jarak-6);
+  background-image: none;
+  cursor: pointer;
+}
+
+.medan__bungkus-pilihan {
+  position: relative;
+}
+
+.medan__bungkus-pilihan::after {
+  content: '▼';
+  position: absolute;
+  right: var(--jarak-3);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: var(--ukuran-xs);
+}

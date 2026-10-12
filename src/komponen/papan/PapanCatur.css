@@ -1,0 +1,25 @@
+.papan-catur {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0;
+}
+
+.papan-catur__bingkai {
+  border: var(--tebal-bingkai-papan) solid var(--papan-bingkai);
+  box-shadow: var(--bayangan-papan);
+  aspect-ratio: 1 / 1;
+}
+
+.papan-catur__bidak {
+  width: 88%;
+  height: 88%;
+  user-select: none;
+  pointer-events: none;
+}
+
+.papan-catur__keterangan {
+  margin-top: var(--jarak-4);
+  font-family: var(--font-mono);
+  font-size: var(--ukuran-s);
+  color: var(--tinta-redup);
+}

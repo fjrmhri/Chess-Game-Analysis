@@ -1,0 +1,41 @@
+.kartu {
+  border: var(--garis);
+  border-radius: var(--radius);
+  background: var(--permukaan);
+  color: var(--tinta);
+  box-shadow: var(--bayangan);
+  min-width: 0;
+}
+
+.kartu__kepala {
+  padding: var(--jarak-3) var(--jarak-4);
+  border-bottom: var(--garis);
+}
+
+.kartu__kepala--utama {
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+}
+
+.kartu__kepala--kedua {
+  background: var(--aksen-kedua);
+  color: var(--teks-pada-aksen);
+}
+
+.kartu__kepala--ketiga {
+  background: var(--aksen-ketiga);
+  color: var(--teks-pada-aksen);
+}
+
+.kartu__judul {
+  margin: 0;
+  font-size: var(--ukuran-l);
+}
+
+.kartu__isi {
+  padding: var(--jarak-4);
+}
+
+.kartu__isi > :last-child {
+  margin-bottom: 0;
+}

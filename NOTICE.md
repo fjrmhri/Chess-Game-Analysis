@@ -86,6 +86,21 @@ Paket tipe `@types/*` dan `csstype` (MIT) hanya dipakai saat kompilasi, tidak di
 | @types/node | 24.19.2 | MIT |
 | @types/react, @types/react-dom | 19.3.0 | MIT |
 
+## Font (dibundel ke situs)
+
+| Paket | Versi | Lisensi | Hak cipta (dari `LICENSE` paket) |
+|---|---|---|---|
+| @fontsource/space-grotesk | 5.3.0 | OFL-1.1 | Copyright 2020 The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk) |
+| @fontsource/space-mono | 5.3.0 | OFL-1.1 | Copyright 2016 The Space Mono Project Authors (https://github.com/googlefonts/spacemono) |
+
+Teks SIL Open Font License 1.1 lengkap ada di `node_modules/@fontsource/<font>/LICENSE`. Font tidak dimodifikasi dan tidak dijual terpisah.
+
 ## Aset
 
-Belum ada aset pihak ketiga (font, bidak) di `public/`.
+| Aset | Lokasi | Pencipta | Lisensi | Sumber |
+|---|---|---|---|---|
+| Set bidak Chessnut (12 SVG, tidak dimodifikasi) | `public/bidak/chessnut/` | Alexis Luengas, Copyright 2015 | Apache-2.0 (`public/bidak/chessnut/LISENSI`, `COPYRIGHT`) | https://github.com/LexLuengas/chessnut-pieces commit `2b8eaf14a31edad7e9deb53b1473e1d4857868a9`; lisensi dikonfirmasi juga di https://github.com/lichess-org/lila/blob/master/COPYING.md |
+| Ikon label langkah (10 SVG) | `src/komponen/ikon/LabelLangkah.tsx` | dibuat untuk proyek ini | GPL-3.0-only | — |
+| Favicon | `public/ikon.svg` | dibuat untuk proyek ini | GPL-3.0-only | — |
+
+Bidak bawaan `react-chessboard` tidak dipakai; asal desainnya tidak tercatat di paket (UNKNOWN), jadi diganti Chessnut.

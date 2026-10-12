@@ -1,7 +1,6 @@
 import type { RouteObject } from 'react-router'
 import {
   HalamanBeranda,
-  HalamanGaya,
   HalamanKalibrasi,
   HalamanPemain,
   HalamanPengaturan,
@@ -10,6 +9,7 @@ import {
   HalamanReview,
   HalamanTidakDitemukan,
 } from './halaman/halaman'
+import { HalamanGaya } from './halaman/HalamanGaya'
 import { TataLetak } from './halaman/TataLetak'
 
 export const daftarRute: RouteObject[] = [

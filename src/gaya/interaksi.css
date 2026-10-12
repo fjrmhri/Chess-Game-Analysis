@@ -1,0 +1,39 @@
+/* Gerak neo-brutalism bersama. data-paksa-keadaan hanya untuk etalase /gaya. */
+.interaktif {
+  box-shadow: var(--bayangan);
+  transition:
+    transform var(--durasi-gerak) ease-out,
+    box-shadow var(--durasi-gerak) ease-out;
+}
+
+.interaktif:not(:disabled):not([aria-disabled='true']):hover,
+.interaktif[data-paksa-keadaan='hover'] {
+  transform: var(--geser-angkat);
+  box-shadow: var(--bayangan-angkat);
+}
+
+.interaktif:not(:disabled):not([aria-disabled='true']):active,
+.interaktif[data-paksa-keadaan='tekan'] {
+  transform: var(--geser-tekan);
+  box-shadow: var(--bayangan-tekan);
+}
+
+.interaktif[data-paksa-keadaan='fokus'] {
+  outline: var(--tebal-garis) solid var(--fokus);
+  outline-offset: 2px;
+}
+
+.interaktif:disabled,
+.interaktif[aria-disabled='true'] {
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interaktif:not(:disabled):hover,
+  .interaktif:not(:disabled):active,
+  .interaktif[data-paksa-keadaan='hover'],
+  .interaktif[data-paksa-keadaan='tekan'] {
+    transform: none;
+  }
+}

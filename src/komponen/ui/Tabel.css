@@ -1,0 +1,47 @@
+.tabel {
+  max-width: 100%;
+  overflow-x: auto;
+  border: var(--garis);
+  background: var(--permukaan);
+  box-shadow: var(--bayangan);
+}
+
+.tabel table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabel caption {
+  padding: var(--jarak-2) var(--jarak-3);
+  text-align: left;
+  font-family: var(--font-judul);
+  font-weight: var(--tebal-judul);
+  text-transform: uppercase;
+  border-bottom: var(--garis);
+  background: var(--aksen-ketiga);
+  color: var(--teks-pada-aksen);
+}
+
+.tabel th,
+.tabel td {
+  padding: var(--jarak-2) var(--jarak-3);
+  text-align: left;
+  border-bottom: var(--tebal-garis-label) solid var(--tinta);
+}
+
+.tabel th {
+  font-family: var(--font-judul);
+  font-size: var(--ukuran-s);
+  text-transform: uppercase;
+  border-bottom-width: var(--tebal-garis);
+}
+
+.tabel tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabel .tabel__angka {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}

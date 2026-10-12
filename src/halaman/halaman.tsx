@@ -34,10 +34,6 @@ export function HalamanPengaturan() {
   return <HalamanSementara judul="Pengaturan" />
 }
 
-export function HalamanGaya() {
-  return <HalamanSementara judul="Gaya" />
-}
-
 export function HalamanPocApi() {
   return <HalamanSementara judul="PoC API" />
 }

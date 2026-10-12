@@ -1,0 +1,107 @@
+/*
+  Satu-satunya tempat nilai warna. Komponen hanya memakai var(--...).
+  Blok gelap muncul dua kali (media query + data-tema); tes kontras memastikan keduanya identik.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Warna dasar (terang) */
+  --latar: #fff8e7;
+  --permukaan: #ffffff;
+  --permukaan-nonaktif: #ece6d6;
+  --tinta: #111111;
+  --tinta-redup: #4a4a4a;
+  --tinta-nonaktif: #6b6b6b;
+
+  /* Aksen: sama di kedua tema */
+  --aksen-utama: #ffd23f;
+  --aksen-kedua: #ff6b9d;
+  --aksen-ketiga: #4d9de0;
+  --bahaya: #ff4d4d;
+  --teks-pada-aksen: #111111;
+
+  /* Papan: tetap di kedua tema */
+  --papan-terang: #fff3c4;
+  --papan-gelap: #7c9cf5;
+  --papan-notasi: #111111;
+  --papan-bingkai: var(--tinta);
+
+  /* Label langkah: teks/ikon selalu gelap (KEPUTUSAN.md butir 9) */
+  --label-tinta: #111111;
+  --label-brilliant: #1be7d6;
+  --label-great: #5b8def;
+  --label-best: #34d399;
+  --label-excellent: #a3e635;
+  --label-good: #d9f99d;
+  --label-book: #d6b38a;
+  --label-inaccuracy: #ffd23f;
+  --label-mistake: #ff9f43;
+  --label-miss: #ff6b9d;
+  --label-blunder: #ff4d4d;
+
+  /* Turunan */
+  --fokus: var(--tinta);
+  --progres-isi: var(--tinta);
+
+  /* Garis dan bayangan keras tanpa blur */
+  --tebal-garis: 3px;
+  --tebal-garis-label: 2px;
+  --tebal-bingkai-papan: 4px;
+  --garis: var(--tebal-garis) solid var(--tinta);
+  --bayangan: 6px 6px 0 var(--tinta);
+  --bayangan-angkat: 8px 8px 0 var(--tinta);
+  --bayangan-tekan: 2px 2px 0 var(--tinta);
+  --bayangan-papan: 8px 8px 0 var(--tinta);
+  --geser-angkat: translate(-2px, -2px);
+  --geser-tekan: translate(4px, 4px);
+  --durasi-gerak: 80ms;
+
+  /* Tipografi (Space Grotesk tersedia 300–700; tidak ada 800) */
+  --font-judul: 'Space Grotesk', system-ui, sans-serif;
+  --font-teks: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --tebal-judul: 700;
+  --jarak-huruf-judul: -0.02em;
+  --ukuran-xs: 0.75rem;
+  --ukuran-s: 0.875rem;
+  --ukuran-m: 1rem;
+  --ukuran-l: 1.25rem;
+  --ukuran-xl: 1.75rem;
+  --ukuran-xxl: 2.5rem;
+  --tinggi-baris: 1.5;
+
+  /* Jarak (kelipatan 4px) */
+  --jarak-1: 0.25rem;
+  --jarak-2: 0.5rem;
+  --jarak-3: 0.75rem;
+  --jarak-4: 1rem;
+  --jarak-5: 1.5rem;
+  --jarak-6: 2rem;
+  --jarak-7: 3rem;
+
+  --lebar-maks: 72rem;
+  --radius: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='terang']) {
+    color-scheme: dark;
+    --latar: #141414;
+    --permukaan: #1f1f1f;
+    --permukaan-nonaktif: #2b2b2b;
+    --tinta: #f5f0e1;
+    --tinta-redup: #c8c2b2;
+    --tinta-nonaktif: #9a9488;
+  }
+}
+
+:root[data-tema='gelap'] {
+  color-scheme: dark;
+  --latar: #141414;
+  --permukaan: #1f1f1f;
+  --permukaan-nonaktif: #2b2b2b;
+  --tinta: #f5f0e1;
+  --tinta-redup: #c8c2b2;
+  --tinta-nonaktif: #9a9488;
+}

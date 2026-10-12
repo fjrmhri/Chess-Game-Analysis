@@ -1,0 +1,64 @@
+.sakelar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jarak-3);
+}
+
+.sakelar__tombol {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jarak-2);
+  min-height: 44px;
+  padding: var(--jarak-1) var(--jarak-2);
+  border: var(--garis);
+  border-radius: var(--radius);
+  background: var(--permukaan);
+  color: var(--tinta);
+  font-family: var(--font-mono);
+  font-size: var(--ukuran-s);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sakelar__jalur {
+  position: relative;
+  width: 44px;
+  height: 22px;
+  border: var(--tebal-garis-label) solid var(--tinta);
+  background: var(--latar);
+}
+
+.sakelar__kenop {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: var(--tinta);
+  transition: left var(--durasi-gerak) ease-out;
+}
+
+.sakelar__tombol[aria-checked='true'] .sakelar__jalur {
+  background: var(--aksen-ketiga);
+}
+
+.sakelar__tombol[aria-checked='true'] .sakelar__kenop {
+  left: 24px;
+  background: var(--label-tinta);
+}
+
+.sakelar__status {
+  min-width: 3.5em;
+  text-align: left;
+}
+
+.sakelar__label {
+  font-weight: 700;
+}
+
+.sakelar__tombol:disabled {
+  background: var(--permukaan-nonaktif);
+  color: var(--tinta-nonaktif);
+  border-style: dashed;
+}

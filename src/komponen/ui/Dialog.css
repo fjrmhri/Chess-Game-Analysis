@@ -1,0 +1,49 @@
+.dialog {
+  width: min(32rem, calc(100vw - 2 * var(--jarak-4)));
+  max-height: calc(100vh - 2 * var(--jarak-4));
+  padding: 0;
+  border: var(--garis);
+  border-radius: var(--radius);
+  background: var(--permukaan);
+  color: var(--tinta);
+  box-shadow: var(--bayangan-angkat);
+}
+
+/* Latar modal: warna datar tanpa blur */
+.dialog::backdrop {
+  background: var(--latar);
+  opacity: 0.85;
+}
+
+.dialog__kepala {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jarak-3);
+  padding: var(--jarak-3) var(--jarak-4);
+  border-bottom: var(--garis);
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+}
+
+.dialog__kepala .tombol--ghost {
+  color: var(--teks-pada-aksen);
+  border-color: var(--teks-pada-aksen);
+}
+
+.dialog__judul {
+  margin: 0;
+  font-size: var(--ukuran-l);
+}
+
+.dialog__isi {
+  padding: var(--jarak-4);
+}
+
+.dialog__aksi {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--jarak-3);
+  padding: 0 var(--jarak-4) var(--jarak-4);
+}

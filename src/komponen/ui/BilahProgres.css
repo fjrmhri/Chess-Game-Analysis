@@ -1,0 +1,36 @@
+.bilah-progres__kepala {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--jarak-2);
+  margin-bottom: var(--jarak-1);
+  font-size: var(--ukuran-s);
+}
+
+.bilah-progres__label {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.bilah-progres__angka {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.bilah-progres__jalur {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border: var(--garis);
+  background: var(--permukaan);
+}
+
+.bilah-progres__segmen {
+  flex: 1 1 0;
+  height: 18px;
+  min-width: 0;
+  background: transparent;
+}
+
+.bilah-progres__segmen[data-terisi='true'] {
+  background: var(--progres-isi);
+}

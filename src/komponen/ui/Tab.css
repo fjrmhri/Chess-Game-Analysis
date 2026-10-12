@@ -1,0 +1,43 @@
+.tab__daftar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.tab__tombol {
+  min-height: 44px;
+  padding: var(--jarak-2) var(--jarak-4);
+  border: var(--garis);
+  border-radius: var(--radius);
+  margin-right: calc(-1 * var(--tebal-garis));
+  margin-bottom: calc(-1 * var(--tebal-garis));
+  background: var(--permukaan);
+  color: var(--tinta);
+  font-family: var(--font-judul);
+  font-weight: var(--tebal-judul);
+  text-transform: uppercase;
+  letter-spacing: var(--jarak-huruf-judul);
+  cursor: pointer;
+}
+
+.tab__tombol[aria-selected='true'] {
+  position: relative;
+  z-index: 1;
+  background: var(--aksen-utama);
+  color: var(--teks-pada-aksen);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.tab__tombol:focus-visible {
+  position: relative;
+  z-index: 2;
+}
+
+.tab__panel {
+  padding: var(--jarak-4);
+  border: var(--garis);
+  background: var(--permukaan);
+  box-shadow: var(--bayangan);
+}

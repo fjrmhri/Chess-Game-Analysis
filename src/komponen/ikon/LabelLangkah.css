@@ -1,0 +1,43 @@
+.ikon-label {
+  display: inline-block;
+  flex: none;
+  overflow: visible;
+}
+
+.ikon-label__simbol {
+  fill: var(--label-tinta);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+
+.ikon-label--brilliant > :first-child {
+  fill: var(--label-brilliant);
+}
+.ikon-label--great > :first-child {
+  fill: var(--label-great);
+}
+.ikon-label--best > :first-child {
+  fill: var(--label-best);
+}
+.ikon-label--excellent > :first-child {
+  fill: var(--label-excellent);
+}
+.ikon-label--good > :first-child {
+  fill: var(--label-good);
+}
+.ikon-label--book > :first-child {
+  fill: var(--label-book);
+}
+.ikon-label--inaccuracy > :first-child {
+  fill: var(--label-inaccuracy);
+}
+.ikon-label--mistake > :first-child {
+  fill: var(--label-mistake);
+}
+.ikon-label--miss > :first-child {
+  fill: var(--label-miss);
+}
+.ikon-label--blunder > :first-child {
+  fill: var(--label-blunder);
+}
