@@ -40,6 +40,20 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - **K3 Wrangler.** `proxy/package.json` mengunci `wrangler` 4.149.0 tetapi belum dipasang; pemasangan dan deploy di P15.
 - **K4 Fixture.** Fixture tes = 3 game asli dari arsip `fjrmhrii` 2026/10 (publik, milik pengguna).
 
+## Keputusan P4 (12 Okt 2026)
+
+- **K1 Berkas engine.** `public/engine/` tidak di-commit; `skrip/salinEngine.mjs` menyalin `stockfish-19-lite-single.{js,wasm}` + `LISENSI` dari `node_modules` lewat `predev`/`prebuild` dan menolak versi paket yang tidak cocok dengan `konfigurasiEngine.ts`.
+- **K2 Paket.** `stockfish` 19.0.1 dependensi biasa (versi terkunci).
+- **K3 Tes integrasi.** Engine asli diuji di Node (satu proses anak per engine) dalam `npm run test:engine`, bagian dari `npm run periksa`.
+- **K4 Garis MultiPV (ASUMSI, diputuskan saat implementasi).** Garis per multipv = baris `info` terakhir, termasuk lowerbound/upperbound (ditandai `batas`), agar `pv[0]` multipv 1 = `bestmove`. Alternatif "baris tepat terakhir" ditolak karena terukur memberi pv[0] ≠ bestmove (b1c3 vs d2d4).
+- **K5 Vitest `maxWorkers: 4`.** Bawaan (~jumlah core) membuat proses tes kehabisan commit memory Windows saat aplikasi lain memakai RAM.
+
+## Temuan engine (TERVERIFIKASI 12 Okt 2026)
+
+- Setiap instance Wasm lite-single memesan memori awal 128 MB (maks 2048 MB, dari section memory berkas `.wasm`). Di Chromium laptop, Worker ke-7 gagal dengan `WebAssembly.instantiate(): Out of memory` saat commit memory Windows bebas ~1,7 GB.
+- `ucinewgame` + `go nodes N` single-thread deterministik (hasil identik pada dua run, di Node dan browser). Biaya `ucinewgame` per posisi vs sekali per game: +2,3% (24 posisi × 100k node, 1 run).
+- Modul Node `stockfish` berbagi state: hanya satu engine per proses Node.
+
 ## Temuan data PubAPI (TERVERIFIKASI 12 Okt 2026)
 
 - `uuid` ada di 128/128 game `fjrmhrii` → kunci `permainan` = `uuid` (butir 11) sesuai.

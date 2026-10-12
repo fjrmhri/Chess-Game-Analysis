@@ -1,0 +1,3 @@
+info string Network replica 1: Local memory. Shared memory not supported by the OS. Local allocation fallback.
+info depth 0 score mate 0
+bestmove (none)

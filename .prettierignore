@@ -6,3 +6,4 @@ LICENSE
 docs
 *.md
 proxy/wrangler.jsonc
+public/engine

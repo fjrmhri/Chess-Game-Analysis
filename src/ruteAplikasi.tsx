@@ -4,7 +4,6 @@ import {
   HalamanKalibrasi,
   HalamanPemain,
   HalamanPengaturan,
-  HalamanPocEngine,
   HalamanReview,
   HalamanMemuat,
   HalamanTidakDitemukan,
@@ -30,7 +29,12 @@ export const daftarRute: RouteObject[] = [
         path: 'poc/api',
         lazy: async () => ({ Component: (await import('./halaman/HalamanPocApi')).HalamanPocApi }),
       },
-      { path: 'poc/engine', Component: HalamanPocEngine },
+      {
+        path: 'poc/engine',
+        lazy: async () => ({
+          Component: (await import('./halaman/HalamanPocEngine')).HalamanPocEngine,
+        }),
+      },
       { path: '*', Component: HalamanTidakDitemukan },
     ],
   },

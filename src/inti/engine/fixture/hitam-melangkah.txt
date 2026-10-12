@@ -1,0 +1,24 @@
+info string Network replica 1: Local memory. Shared memory not supported by the OS. Local allocation fallback.
+info depth 1 seldepth 2 multipv 1 score cp -6 nodes 39 nps 39000 hashfull 0 time 1 pv e7e5
+info depth 1 seldepth 2 multipv 2 score cp -26 nodes 39 nps 39000 hashfull 0 time 1 pv e7e6
+info depth 2 seldepth 3 multipv 1 score cp -6 nodes 422 nps 211000 hashfull 0 time 2 pv e7e5 b2b3
+info depth 2 seldepth 4 multipv 2 score cp -27 nodes 422 nps 211000 hashfull 0 time 2 pv c7c5
+info depth 3 seldepth 4 multipv 1 score cp -13 nodes 1328 nps 332000 hashfull 0 time 4 pv e7e5 g1f3 b8c6
+info depth 3 seldepth 6 multipv 2 score cp -30 nodes 1328 nps 332000 hashfull 0 time 4 pv c7c5 g1f3 e7e6
+info depth 4 seldepth 11 multipv 1 score cp -17 nodes 2582 nps 430333 hashfull 0 time 6 pv e7e5 b1c3
+info depth 4 seldepth 10 multipv 2 score cp -25 nodes 2582 nps 430333 hashfull 0 time 6 pv e7e6 g1f3 d7d5 e4d5 e6d5 d2d4
+info depth 5 seldepth 11 multipv 1 score cp -24 nodes 3814 nps 476750 hashfull 0 time 8 pv e7e6 g1f3 d7d5 e4d5 e6d5
+info depth 5 seldepth 6 multipv 2 score cp -26 nodes 3814 nps 476750 hashfull 0 time 8 pv e7e5 g1f3 b8c6 b1c3 g8f6
+info depth 6 seldepth 10 multipv 1 score cp -26 nodes 5393 nps 449416 hashfull 0 time 12 pv e7e6 b1c3 d7d5 g1f3 d5e4 c3e4 g8f6
+info depth 6 seldepth 11 multipv 2 score cp -29 nodes 5393 nps 449416 hashfull 0 time 12 pv c7c5 g1f3 e7e6 c2c3
+info depth 7 seldepth 10 multipv 1 score cp -26 nodes 6093 nps 468692 hashfull 1 time 13 pv e7e6 b1c3 d7d5 g1f3 d5e4 c3e4 g8f6
+info depth 7 seldepth 12 multipv 2 score cp -31 nodes 6093 nps 435214 hashfull 1 time 14 pv c7c5 b1c3 e7e6 g1f3 b8c6 d2d4 c5d4 f3d4 g8f6
+info depth 8 seldepth 13 multipv 1 score cp -35 nodes 15978 nps 389707 hashfull 4 time 41 pv e7e5 g1f3 b8c6 f1c4 d7d6 d2d4 e5d4 f3d4
+info depth 8 seldepth 17 multipv 2 score cp -37 nodes 15978 nps 380428 hashfull 4 time 42 pv c7c5 b1c3 e7e6 g1f3 b8c6 d2d4 c5d4 f3d4
+info depth 9 seldepth 14 multipv 1 score cp -28 nodes 18960 nps 371764 hashfull 5 time 51 pv e7e5 b1c3 b8c6 g1f3 f8c5 c3d5
+info depth 9 seldepth 11 multipv 2 score cp -35 nodes 18960 nps 371764 hashfull 5 time 51 pv c7c5 g1f3 e7e6 c2c3 d7d5 e4e5 d5d4 c3d4 c5d4
+info depth 10 seldepth 17 multipv 1 score cp -33 nodes 29808 nps 363512 hashfull 9 time 82 pv e7e5 g1f3 b8c6 f1c4 g8f6 d2d4 e5d4 e1g1 f6e4 f3d4
+info depth 10 seldepth 14 multipv 2 score cp -36 nodes 29808 nps 363512 hashfull 9 time 82 pv c7c5 g1f3 e7e6 d2d4 c5d4 f3d4 b8c6 c1e3 g8f6 b1c3
+info depth 11 seldepth 17 multipv 1 score cp -33 nodes 30029 nps 361795 hashfull 9 time 83 pv e7e5 g1f3 b8c6 f1c4 g8f6 d2d4 e5d4 e1g1 f6e4 f3d4
+info depth 11 seldepth 14 multipv 2 score cp -36 nodes 30029 nps 361795 hashfull 9 time 83 pv c7c5 g1f3 e7e6 d2d4 c5d4 f3d4 b8c6 c1e3 g8f6 b1c3
+bestmove e7e5 ponder g1f3

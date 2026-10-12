@@ -6,13 +6,13 @@ Telaah tidak berafiliasi dengan Chess.com.
 
 Data di bawah diambil dari `package.json` dan berkas lisensi paket terpasang di `node_modules` (diperbarui 12 Okt 2026), bukan dari ingatan. Teks lisensi lengkap tiap paket ada di berkas yang disebut pada kolom "Berkas".
 
-## Engine (direncanakan, dipasang di P4)
+## Engine (terpasang, disalin ke `public/engine/` saat dev/build)
 
 | Paket | Versi | Lisensi | Atribusi |
 |---|---|---|---|
 | stockfish (Stockfish.js, nmrugg) | 19.0.1 | GPL-3.0 (`Copying.txt`) | "Stockfish.js 19 (c) 2026, Chess.com, LLC"; berbasis Stockfish (c) T. Romstad, M. Costalba, J. Kiiski, G. Linscott dan kontributor lain; net oleh Chris Bao (sscg13). Kode non-engine di paket: MIT. |
 
-Sumber: berkas paket versi 19.0.1 (`package.json`, `README.md`, `Copying.txt`, header `bin/stockfish-19-lite-single.js`). Diverifikasi ulang dari `node_modules` saat dipasang.
+Sumber: `node_modules/stockfish` 19.0.1 terpasang (`package.json` license `GPL-3.0`, `Copying.txt` = teks GPLv3, header `bin/stockfish-19-lite-single.js` "License: GPLv3"). Yang dikirim ke situs hanya `stockfish-19-lite-single.js` (28.230 byte), `stockfish-19-lite-single.wasm` (1.845.971 byte), dan `LISENSI` (salinan `Copying.txt`). Kode sumber engine: https://github.com/nmrugg/stockfish.js dan https://github.com/official-stockfish/Stockfish.
 
 ## Dependensi runtime (ikut dibundel ke situs)
 

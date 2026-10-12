@@ -1,0 +1,16 @@
+info string Network replica 1: Local memory. Shared memory not supported by the OS. Local allocation fallback.
+info depth 1 seldepth 2 multipv 1 score cp -744 nodes 8 nps 8000 hashfull 0 time 1 pv f7f5
+info depth 2 seldepth 4 multipv 1 score cp -622 nodes 19 nps 19000 hashfull 0 time 1 pv f7f5 d1d8 g8f7
+info depth 3 seldepth 4 multipv 1 score cp -622 nodes 31 nps 31000 hashfull 0 time 1 pv f7f5 d1d8 g8f7
+info depth 4 seldepth 7 multipv 1 score cp -715 nodes 50 nps 50000 hashfull 0 time 1 pv f7f5 d1d8 g8f7 d8d7 f7e6 d7g7
+info depth 5 seldepth 7 multipv 1 score cp -617 nodes 72 nps 72000 hashfull 0 time 1 pv f7f5 d1d8 g8f7 d8d7 f7f8
+info depth 6 seldepth 9 multipv 1 score cp -643 nodes 213 nps 106500 hashfull 0 time 2 pv f7f5 d1d8 g8f7 d8a8 f7e7
+info depth 7 seldepth 8 multipv 1 score cp -606 nodes 326 nps 163000 hashfull 0 time 2 pv f7f5 d1d8 g8f7 d8a8 f7e7 a8a7 e7f8
+info depth 8 seldepth 11 multipv 1 score cp -605 nodes 1004 nps 251000 hashfull 0 time 4 pv f7f5 d1d8 g8f7 d8a8 f7e7 g1f1 e7f7 h2h3
+info depth 9 seldepth 10 multipv 1 score cp -607 nodes 1462 nps 292400 hashfull 0 time 5 pv h7h6 d1e1 f7f5 g1f1 f5f4 e1b1
+info depth 10 seldepth 12 multipv 1 score cp -598 nodes 2367 nps 338142 hashfull 0 time 7 pv f7f5 g1f1
+info depth 11 seldepth 13 multipv 1 score cp -615 nodes 4008 nps 364363 hashfull 1 time 11 pv h7h6 h2h4 h6h5 g1f1 f7f5 g2g3
+info depth 12 seldepth 14 multipv 1 score cp -614 nodes 7245 nps 381315 hashfull 2 time 19 pv f7f5 g1f1 g8f7 h2h3 h7h5 d1e1 f5f4
+info depth 13 seldepth 15 multipv 1 score cp -604 nodes 18968 nps 379360 hashfull 5 time 50 pv g7g5 g1f1 h7h6 d1e1 f7f5 h2h3 g8f7 h3h4 g5g4 g2g3
+info depth 14 seldepth 15 multipv 1 score cp -604 nodes 20024 nps 385076 hashfull 5 time 52 pv g7g5 g1f1 h7h6 d1e1 f7f5 h2h3 g8f7 h3h4 g5g4 g2g3
+bestmove g7g5 ponder g1f1

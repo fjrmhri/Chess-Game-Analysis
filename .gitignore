@@ -39,3 +39,6 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Engine disalin dari node_modules oleh skrip/salinEngine.mjs
+public/engine/

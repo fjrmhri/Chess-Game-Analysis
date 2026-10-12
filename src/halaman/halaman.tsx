@@ -34,10 +34,6 @@ export function HalamanPengaturan() {
   return <HalamanSementara judul="Pengaturan" />
 }
 
-export function HalamanPocEngine() {
-  return <HalamanSementara judul="PoC Engine" />
-}
-
 export function HalamanTidakDitemukan() {
   return <HalamanSementara judul="Halaman tidak ditemukan" />
 }
