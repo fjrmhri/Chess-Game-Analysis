@@ -1,0 +1,34 @@
+.bagian-penilaian {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-5);
+  margin-top: var(--jarak-5);
+}
+
+.bagian-penilaian__sel {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--jarak-2);
+}
+
+.bagian-penilaian__pgn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-3);
+}
+
+.bagian-penilaian__teks {
+  width: 100%;
+  margin-top: var(--jarak-2);
+  padding: var(--jarak-2);
+  border: var(--garis);
+  background: var(--permukaan);
+  color: var(--tinta);
+  font-size: var(--ukuran-s);
+}
+
+.bagian-penilaian summary {
+  cursor: pointer;
+  font-weight: 700;
+}

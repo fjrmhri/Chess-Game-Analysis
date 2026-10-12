@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { ambilKlienChesscom } from '../../inti/chesscom/klienBawaan'
+import { tautanPermainan } from '../../inti/chesscom/tautanPermainan'
 import { ambilBasisData } from '../../inti/data/basisDataBawaan'
 import type { Permainan, Posisi } from '../../inti/data/tipe'
 import type { KonfigurasiAnalisis } from '../../inti/engine/konfigurasiAnalisis'
@@ -13,8 +14,7 @@ import { KolomIsian } from '../../komponen/ui/KolomIsian'
 import { Lencana } from '../../komponen/ui/Lencana'
 import { Tombol } from '../../komponen/ui/Tombol'
 import type { HasilPenilaian } from '../../inti/penilaian/penilaianPermainan'
-import { LencanaLabel } from '../../komponen/ikon/LencanaLabel'
-import { Tabel } from '../../komponen/ui/Tabel'
+import { BagianPenilaian } from './BagianPenilaian'
 import {
   BATAS_RUN_KEDUA_MS,
   jalankanRun,
@@ -127,7 +127,8 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
           <dt>Game</dt>
           <dd>
             {permainan.namaPutih} vs {permainan.namaHitam} · {permainan.timeClass} ·{' '}
-            {permainan.jumlahPly} ply · <a href={permainan.url}>tautan</a>
+            {permainan.jumlahPly} ply ·{' '}
+            <a href={tautanPermainan(permainan.url, permainan.pgn)}>tautan</a>
           </dd>
           {run[0] && (
             <>
@@ -157,40 +158,7 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
         </dl>
       )}
       {permainan && penilaian && (
-        <>
-          <h4>Penilaian MVP ({penilaian.versiAlgoritma})</h4>
-          <dl className="poc__ringkasan">
-            <dt>Akurasi Terbuka (Lichess)</dt>
-            <dd className="teks-mono">
-              putih {penilaian.akurasi.putih?.toFixed(1) ?? '-'} · hitam{' '}
-              {penilaian.akurasi.hitam?.toFixed(1) ?? '-'}
-            </dd>
-            <dt>Akurasi chess.com (API)</dt>
-            <dd className="teks-mono">
-              {permainan.akurasiChessCom
-                ? `putih ${permainan.akurasiChessCom.putih} · hitam ${permainan.akurasiChessCom.hitam}`
-                : 'tidak ada (game belum pernah direview di chess.com)'}
-            </dd>
-          </dl>
-          <Tabel
-            judul="Label per langkah"
-            kolom={[
-              { kunci: 'ply', judul: 'Ply', angka: true },
-              { kunci: 'langkah', judul: 'Langkah' },
-              { kunci: 'label', judul: 'Label' },
-              { kunci: 'poin', judul: 'Poin hilang', angka: true },
-              { kunci: 'terbaik', judul: 'Terbaik engine' },
-            ]}
-            baris={penilaian.label.map((l) => ({
-              ply: l.ply,
-              langkah: `${l.warna === 'w' ? `${Math.ceil(l.ply / 2)}.` : `${Math.ceil(l.ply / 2)}...`} ${posisi.find((p) => p.ply === l.ply)?.langkahSan ?? l.langkahUci}`,
-              label: <LencanaLabel label={l.label} />,
-              poin: l.poinHilang.toFixed(3),
-              terbaik: l.langkahTerbaik ?? '-',
-            }))}
-            kunciBaris={(b) => String(b.ply)}
-          />
-        </>
+        <BagianPenilaian permainan={permainan} posisi={posisi} penilaian={penilaian} />
       )}
     </Kartu>
   )
