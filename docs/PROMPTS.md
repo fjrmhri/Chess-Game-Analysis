@@ -32,7 +32,7 @@ Peta fase:
 - Pasang Node.js LTS dan Git (cek `node -v`, `npm -v`, `git --version` di terminal).
 - Buat repo GitHub kosong (privat boleh) dan akun Cloudflare gratis. Belum perlu dihubungkan.
 - Salin `CLAUDE.md` dan folder `docs/` ke folder proyek (sudah ada bila berkas ini dibuat di sana).
-- Siapkan nama pengguna chess.com Anda untuk uji. Spesifikasi perangkat (dari DxDiag dan data Anda): laptop ASUS VivoBook M1403QA, AMD Ryzen 7 5800HS (16 thread), RAM 16 GB, Windows 11; HP vivo Y20s [G] (ASUMSI model; RAM 4 atau 6 GB belum dipastikan). Data ini hanya konteks; angka kinerja engine tetap diukur di PoC 2, bukan ditebak dari spesifikasi.
+- Siapkan nama pengguna chess.com Anda untuk uji. Spesifikasi perangkat (dari DxDiag dan data Anda): laptop ASUS VivoBook M1403QA, AMD Ryzen 7 5800HS (16 thread), RAM 16 GB, Windows 11; HP vivo Y20sG (spesifikasi UNKNOWN, lihat docs/KEPUTUSAN.md). Data ini hanya konteks; angka kinerja engine tetap diukur di PoC 2, bukan ditebak dari spesifikasi.
 
 ### P0 — Pemeriksaan awal
 
@@ -73,7 +73,7 @@ Buat kerangka proyek di folder ini (bukan subfolder):
 - Satu tes contoh yang lulus untuk membuktikan Vitest jalan.
 - Buat NOTICE.md awal (daftar dependensi + lisensi hasil npm view/LICENSE terpasang, bukan dari ingatan) dan README.md singkat (cara menjalankan di Windows).
 
-Minta rencana singkat dulu. Setelah saya setujui, eksekusi. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Setelah saya setujui, eksekusi. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: `npm run periksa` hijau; `npm run dev` menampilkan placeholder tiap rute; commit `chore: kerangka proyek`.
@@ -93,7 +93,7 @@ Bangun design system neo-brutalism untuk Telaah. Jawabannya untuk "apakah bisa":
 6. Periksa kontras teks vs latar untuk semua pasangan warna di terang dan gelap (hitung rasio dengan skrip kecil, target >= 4.5:1 teks, >= 3:1 elemen non-teks). Laporkan pasangan yang gagal dan perbaiki dengan menyesuaikan token, bukan dengan mengabaikan.
 7. Uji visual: jalankan dev server, ambil screenshot /gaya (lebar 1280 dan 390, terang dan gelap) memakai Playwright atau alat browser yang tersedia, lalu telaah sendiri hasilnya dan perbaiki cacat (teks terpotong, bayangan terpotong, elemen tumpang tindih).
 
-Jangan menyalin gaya, palet, atau ikon chess.com. Akhiri dengan Penutup standar dan sertakan lokasi screenshot.
+Jangan menyalin gaya, palet, atau ikon chess.com. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar dan sertakan lokasi screenshot.
 ```
 
 Kriteria lulus: /gaya menampilkan semua komponen di terang dan gelap; rasio kontras terlampir; tidak ada warna hex di luar `token.css` (cek dengan grep); `npm run periksa` hijau.
@@ -121,7 +121,7 @@ Bangun src/inti/chesscom:
 
 PoC 1: halaman /poc/api. Isi: kolom username, tombol "Uji". Tampilkan secara berurutan: jumlah arsip, 24 bulan terakhir diambil serial dengan status/waktu tiap permintaan, ada/tidaknya header access-control-allow-origin (dari response.headers; bila dibaca tertutup oleh browser, katakan itu), field yang terbaca pada game pertama (pgn, accuracies, white.rating, uuid, time_class, rules, eco). Tampilkan LULUS/GAGAL menurut kriteria di blueprint.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: tes unit hijau; /poc/api dengan username Anda mengambil 24 bulan tanpa error CORS dari `localhost`.
@@ -138,10 +138,10 @@ Bangun src/inti/engine:
 3. KolamMesin: N Worker (default min(4, hardwareConcurrency - 1) laptop, 2 pada perangkat seluler; dapat diubah), antrean tugas, pembatalan, penyelesaian berurutan terjamin kebenarannya (hasil dipetakan ke permintaan lewat id).
 4. Tes unit untuk parser UCI dengan cuplikan output nyata (dari menjalankan engine), dan tes integrasi yang memuat engine di Node/jsdom bila memungkinkan; bila tidak, jelaskan batasnya dan uji di browser lewat PoC.
 
-PoC 2: halaman /poc/engine. Tombol benchmark: posisi awal, posisi tengah permainan, posisi akhir permainan; go nodes 100000 dan 1000000; ukur waktu, nodes/detik, kedalaman. Uji pool 1/2/3/4 Worker pada 24 posisi dan hitung percepatan. Tampilkan crossOriginIsolated, hardwareConcurrency, userAgent. Tampilkan LULUS/GAGAL menurut kriteria blueprint (laptop <= 0,3 s per 100k node; pool 3 Worker >= 2,3x).
+PoC 2: halaman /poc/engine. Tombol benchmark: posisi awal, posisi tengah permainan, posisi akhir permainan; go nodes 100000 dan 1000000; ukur waktu, nodes/detik, kedalaman. Uji pool 1/2/3/4/5/6/7/8 Worker (lewati jumlah di atas hardwareConcurrency) pada 24 posisi dan hitung percepatan. Tampilkan crossOriginIsolated, hardwareConcurrency, userAgent. Tampilkan LULUS/GAGAL menurut kriteria blueprint (laptop <= 0,3 s per 100k node; pool 3 Worker >= 2,3x).
 
 Jangan mengklaim angka kinerja tanpa menjalankannya. Bila tidak bisa menjalankan di browser sendiri, bangun halamannya dan nyatakan UNKNOWN, lalu beri saya instruksi untuk menjalankannya.
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: parser teruji; /poc/engine jalan di Chrome laptop dan HP.
@@ -169,7 +169,7 @@ Bangun src/inti/pgn dan src/inti/data:
 5. Fungsi penyimpanan: simpanPermainan, ambilPermainanPemain (filter + paginasi di tingkat query), simpanEvaluasi/ambilEvaluasi, simpanHasilAnalisis, ekspor/impor seluruh basis data ke JSON (dengan versi skema).
 6. Tes: fixture 5 PGN nyata dengan variasi (mat, remis repetisi, menyerah, waktu habis, komentar clk). Uji jumlahLangkah, hasilSaya, FEN akhir.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: semua tes hijau; ekspor lalu impor menghasilkan data identik.
@@ -189,7 +189,7 @@ Bangun src/inti/engine/pipelineAnalisis:
 - Semua parameter (nodes, multiPv, jumlah worker) dari satu objek konfigurasi + pengaturan pengguna.
 - Tes: pakai MesinCatur tiruan deterministik. Uji: urutan hasil benar, cache dipakai, pembatalan, posisi terminal, langkah paksa.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: tes hijau; satu game nyata bisa dianalisis dari skrip uji/halaman PoC dan evaluasinya tersimpan; analisis kedua game yang sama selesai < 1 detik (dari cache).
@@ -209,7 +209,7 @@ Bangun src/inti/penilaian (fungsi murni, tanpa React):
 7. Klasifikasi ulang tanpa engine: fungsi yang menerima evaluasi tersimpan + konfigurasi baru.
 8. Tes unit kaya: nilai batas tiap pita (0,02/0,05/0,10/0,20 tepat di batas), simetri putih/hitam, konversi mat, cp ekstrem, langkah paksa, dan satu game fixture dengan hasil yang dihitung tangan untuk 5 langkah. Jangan menulis tes yang hanya menyalin implementasi.
 
-Akhiri dengan Penutup standar.
+Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: tes batas pita lulus; satu game end-to-end (API → PGN → engine → label) dapat dihitung lewat skrip/halaman uji; PoC 3 bagian awal: bandingkan label manual 1 game dengan chess.com (Anda), target >= 50% persis, selisih accuracy <= 10 vs field `accuracies` API.
@@ -234,7 +234,7 @@ Bangun:
 3. Keadaan kosong, memuat, dan galat yang dirancang neo-brutalism (bukan teks polos).
 4. Tes komponen untuk filter dan paginasi. Uji tampilan: screenshot 1280 dan 390 (terang/gelap), telaah, perbaiki.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: dengan username Anda, daftar game tampil, filter dan paginasi bekerja, URL dapat dibagikan; layout mobile 390px tanpa gulir horizontal.
@@ -255,7 +255,7 @@ Bangun /review/:idPermainan (HalamanReview):
 8. Mobile: papan lebar penuh, bar navigasi, grafik mini, tab [Langkah | Ringkasan]. Desktop: dua kolom seperti wireframe blueprint.
 9. Tes komponen untuk navigasi dan sinkron ?move. Uji visual dengan screenshot (1280, 390; terang/gelap) pada game nyata; telaah dan perbaiki.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: klik titik grafik memindahkan papan; refresh URL mempertahankan langkah; navigasi 60 fps (periksa dengan profil sederhana atau jelaskan metode); buka ulang game < 200 ms dari cache.
@@ -276,7 +276,7 @@ Baca CLAUDE.md dan docs/BLUEPRINT-RINGKAS.md (bagian 3 dan 4).
 5. Tes unit untuk setiap aturan: kasus positif dan negatif, kasus batas. Semua parameter tetap di konfigurasiPenilaian.ts (ASUMSI) dan naikkan versiAlgoritma.
 6. UI: Book dan label baru muncul di review (IkonLabel sudah ada), dan penjelasan "mengapa label ini" (daftar alasan) pada langkah aktif.
 
-Jangan mengklaim kecocokan dengan chess.com; ukuran kecocokan baru ada setelah P11. Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Jangan mengklaim kecocokan dengan chess.com; ukuran kecocokan baru ada setelah P11. Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: tes aturan hijau; pada 3 game uji, label Brilliant/Great jarang (bukan puluhan per game); tiap label punya alasan.
@@ -296,7 +296,7 @@ Baca CLAUDE.md dan docs/BLUEPRINT-RINGKAS.md (bagian 2 dan 8).
 3. Fungsi metrik dan grid search murni di src/inti/penilaian/kalibrasi dengan tes (pakai data sintetis kecil dengan jawaban yang diketahui).
 4. Tulis docs/PROSEDUR-KALIBRASI.md untuk saya: langkah mengumpulkan data dari chess.com (hanya game sendiri, tanpa scraping), format CSV, cara membaca laporan.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: metrik dapat dihitung pada data uji; laporan memuat latih/uji.
@@ -321,7 +321,7 @@ Bangun PapanAnalisis di halaman review (mode "Analisis"):
 7. Tes untuk reducer variasi (langkah, undo, redo, reset, serialisasi URL) dan kasus tepi: langkah mat, remis, promosi, en passant, rokade.
 8. Mobile: papan penuh, baris tombol, panel garis engine sebagai panel geser. Uji visual dengan screenshot.
 
-Minta rencana singkat dulu. Akhiri dengan Penutup standar.
+Minta rencana singkat dulu. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: semua kontrol bekerja; tautan ber-`var` dapat dibuka di tab baru dan menghasilkan posisi sama; label muncul <= 2 s di laptop Anda.
@@ -342,7 +342,7 @@ Bangun src/inti/tips (fungsi murni) dan KartuTips:
 4. Jangan menambahkan LLM. Beri catatan di docs/TIPS.md tentang batas fitur ini dan bagaimana LLM bisa ditambahkan kelak (hanya FEN + PV + motif, default mati, dan risiko kepatuhan di User Agreement chess.com).
 5. Tinjau 20 tips dari game nyata saya secara kritis: kutip contoh yang salah/janggal di laporan dan perbaiki aturannya.
 
-Akhiri dengan Penutup standar.
+Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: tips muncul untuk semua langkah buruk; tidak ada penjelasan yang mengarang motif; 20 tips hasil tinjauan Anda mayoritas masuk akal.
@@ -363,7 +363,7 @@ Baca CLAUDE.md dan docs/BLUEPRINT-RINGKAS.md.
 4. PWA opsional ringan: service worker (cara paling sederhana yang berfungsi di Cloudflare Pages) agar aplikasi dan berkas engine tersimpan offline. Pastikan service worker tidak mengganggu pembaruan versi (strategi pembaruan jelas) dan tidak mengganggu header COOP/COEP bila nanti diaktifkan. Jelaskan trade-off; jika risikonya lebih besar dari manfaatnya, lewati dan katakan.
 5. Halaman "Tentang & Lisensi" yang membaca NOTICE.md (atau salinannya saat build), memuat penafian "Tidak berafiliasi dengan Chess.com".
 
-Akhiri dengan Penutup standar.
+Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: impor/ekspor round-trip identik; aplikasi tidak crash saat localStorage diblokir (uji dengan mode pribadi/pemblokiran).
@@ -381,7 +381,7 @@ Siapkan deploy dan beri saya langkah [MANUAL] yang tepat:
 5. Skrip uji pascadeploy (npm run uji:deploy -- <url>): periksa status, MIME wasm, header cache, dan bahwa rute dalam (mis. /review/x) mengembalikan aplikasi, bukan 404.
 6. Tulis docs/DEPLOY.md untuk Windows: buat repo GitHub, push, hubungkan ke Cloudflare Pages lewat dasbor (langkah demi langkah sesuai UI saat ini; jika tidak yakin dengan UI terbaru, katakan UNKNOWN dan rujuk dokumentasi resmi), cek ulang batas gratis di halaman resmi sebelum memutuskan, dan GitHub Pages sebagai cadangan (catatan: tanpa custom header).
 
-Jangan melakukan git push atau deploy sendiri; siapkan semuanya dan beri saya perintahnya. Akhiri dengan Penutup standar.
+Jangan melakukan git push atau deploy sendiri; siapkan semuanya dan beri saya perintahnya. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: `npm run uji:deploy` lulus terhadap URL `*.pages.dev`; PoC 1 (CORS dari origin produksi) dan PoC 2 (engine, HP) diulang di situs produksi dan hasilnya dicatat.
@@ -401,7 +401,7 @@ Lakukan audit akhir, hanya laporkan dan perbaiki yang terbukti:
 6. Dokumentasi: README (menjalankan, menguji, struktur), docs/ARSITEKTUR.md (diagram alur data teks), docs/PROSEDUR-KALIBRASI.md mutakhir, daftar keterbatasan jujur (apa yang hanya pendekatan terhadap chess.com).
 7. Laporan akhir: tabel temuan (tingkat keparahan, status), apa yang masih ASUMSI/UNKNOWN, dan rekomendasi satu langkah berikutnya.
 
-Akhiri dengan Penutup standar.
+Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 Kriteria lulus: tidak ada temuan keparahan tinggi terbuka; laporan akhir menyebut jujur batas kemiripan dengan chess.com.
@@ -415,19 +415,19 @@ Kriteria lulus: tidak ada temuan keparahan tinggi terbuka; laporan akhir menyebu
 ```text
 Ada masalah: <gejala singkat>.
 Bukti: <pesan error / log konsol / langkah reproduksi / tangkapan layar>.
-Ikuti urutan: (1) gejala, (2) akar masalah dengan bukti (berkas:baris, log, angka) — jika bukti kurang, tulis UNKNOWN dan perintah yang perlu dijalankan, jangan menebak, (3) perbaikan minimal, (4) cara verifikasi, termasuk tes yang gagal sebelum perbaikan dan lulus sesudahnya. Jangan merefaktor di luar akar masalah. Akhiri dengan Penutup standar.
+Ikuti urutan: (1) gejala, (2) akar masalah dengan bukti (berkas:baris, log, angka) — jika bukti kurang, tulis UNKNOWN dan perintah yang perlu dijalankan, jangan menebak, (3) perbaikan minimal, (4) cara verifikasi, termasuk tes yang gagal sebelum perbaikan dan lulus sesudahnya. Jangan merefaktor di luar akar masalah. Sajikan setiap ambiguitas atau hambatan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md). Akhiri dengan Penutup standar.
 ```
 
 ### U2 — Tinjauan kode berkala (tiap akhir fase)
 
 ```text
-Tinjau perubahan sejak commit <hash fase sebelumnya> terhadap CLAUDE.md. Periksa: pelanggaran aturan arsitektur (logika di komponen, engine di luar Worker, warna hardcoded), penamaan, tes yang hanya menyalin implementasi, parameter ASUMSI yang tersebar di luar konfigurasiPenilaian.ts, dependensi baru tanpa catatan di NOTICE.md, dan risiko kepatuhan. Laporkan temuan berperingkat dengan berkas:baris. Perbaiki hanya yang jelas salah; sisanya tanyakan.
+Tinjau perubahan sejak commit <hash fase sebelumnya> terhadap CLAUDE.md. Periksa: pelanggaran aturan arsitektur (logika di komponen, engine di luar Worker, warna hardcoded), penamaan, tes yang hanya menyalin implementasi, parameter ASUMSI yang tersebar di luar konfigurasiPenilaian.ts, dependensi baru tanpa catatan di NOTICE.md, dan risiko kepatuhan. Laporkan temuan berperingkat dengan berkas:baris. Perbaiki hanya yang jelas salah; sisanya sajikan sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md).
 ```
 
 ### U3 — Perbaikan tampilan neo-brutalism
 
 ```text
-Telaah tampilan halaman <rute> terhadap bagian "Desain: neo-brutalism" di CLAUDE.md. Ambil screenshot (1280 dan 390, terang dan gelap), tulis daftar penyimpangan (border/bayangan tidak konsisten, radius, gradient/blur, warna di luar token, hierarki lemah, teks terpotong, kontras), lalu perbaiki lewat token dan komponen yang ada, bukan gaya satu-kali. Tampilkan screenshot sebelum dan sesudah. Jika token itu sendiri yang salah, usulkan perubahan token dan dampaknya sebelum menerapkan.
+Telaah tampilan halaman <rute> terhadap bagian "Desain: neo-brutalism" di CLAUDE.md. Ambil screenshot (1280 dan 390, terang dan gelap), tulis daftar penyimpangan (border/bayangan tidak konsisten, radius, gradient/blur, warna di luar token, hierarki lemah, teks terpotong, kontras), lalu perbaiki lewat token dan komponen yang ada, bukan gaya satu-kali. Tampilkan screenshot sebelum dan sesudah. Jika token itu sendiri yang salah, usulkan perubahan token dan dampaknya sebagai opsi + REKOMENDASI (Aturan keputusan di CLAUDE.md) sebelum menerapkan.
 ```
 
 ---
