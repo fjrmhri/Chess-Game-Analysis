@@ -70,6 +70,15 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - ASUMSI di `konfigurasiAnalisis.ts`: batas posisi kritis Tahap B 12 (laptop) / 6 (HP); penentu posisi kritis bawaan kosong sampai P10/P11.
 - **Hasil (TERVERIFIKASI 12 Okt 2026):** Node, game `mat-saya-kalah` 25 posisi, 20k node, 2 engine: run kedua 13 ms dari cache, 0 panggilan engine. Chromium headless laptop (build produksi), game terakhir `fjrmhrii` 95 ply, 100k node, MultiPV 2, 4 Worker: run 1 6.952 ms (95 posisi engine), run 2 100 ms dari cache, 0 panggilan engine.
 
+## Keputusan dan temuan P7 (12 Okt 2026)
+
+- **Rumus akurasi Lichess (TERVERIFIKASI dari sumber lila/scalachess/scalalib, bukan hanya halaman lichess.org/page/accuracy):** Win% = 50 + 50·(2/(1+e^(−0,00368208·cp))−1) dengan cp dibatasi ±1000 dan mat = ±1000; akurasi langkah = 103,1668100711649·e^(−0,04354415386753951·selisih) − 3,166924740191411 **+ 1** (bonus ketidakpastian), 100 bila tidak turun, dibatasi [0, 100]; jendela = jumlah evaluasi/10 dibatasi [2, 8]; bobot = simpangan baku populasi jendela dibatasi [0,5; 12]; hasil = (rata terbobot + rata harmonik dengan nilai min 1)/2; evaluasi awal putih = 15 cp. Blueprint §2 tidak menyebut bonus +1 dan plafon ±1000; implementasi mengikuti sumber.
+- ASUMSI: posisi awal non-standar memakai evaluasi engine ply 0 sebagai cp awal (lila memakai 15 cp sebagai bawaan).
+- Batas pita resmi inklusif di batas atas (0,02 = Excellent, 0,05 = Good, 0,10 = Inaccuracy, 0,20 = Mistake).
+- EP memakai rating pemain yang melangkah; `beta` = 0 sehingga rating belum berpengaruh.
+- Langkah yang tidak ada di MultiPV posisi sebelumnya: epDimainkan = 1 − EP evaluasi posisi sesudahnya.
+- **Hasil nyata (Chromium headless laptop, game `fjrmhrii` vs LJH-2013, 95 ply, 100k node, MultiPV 2):** akurasi Terbuka 94,7 / 88,0 vs `accuracies` API chess.com 93,92 / 83,96 (selisih 0,8 dan 4,0). Label: putih 41 Best, 6 Excellent, 1 Blunder; hitam 24 Best, 16 Excellent, 4 Good, 2 Inaccuracy, 1 Blunder. Book belum ada (P10) sehingga langkah pembukaan berlabel Best/Excellent.
+
 ## Temuan engine (TERVERIFIKASI 12 Okt 2026)
 
 - Setiap instance Wasm lite-single memesan memori awal 128 MB (maks 2048 MB, dari section memory berkas `.wasm`). Di Chromium laptop, Worker ke-7 gagal dengan `WebAssembly.instantiate(): Out of memory` saat commit memory Windows bebas ~1,7 GB.

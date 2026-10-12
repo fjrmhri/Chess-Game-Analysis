@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { ambilKlienChesscom } from '../../inti/chesscom/klienBawaan'
 import { ambilBasisData } from '../../inti/data/basisDataBawaan'
-import type { Permainan } from '../../inti/data/tipe'
+import type { Permainan, Posisi } from '../../inti/data/tipe'
 import type { KonfigurasiAnalisis } from '../../inti/engine/konfigurasiAnalisis'
 import { urlEngine, VERSI_ENGINE } from '../../inti/engine/konfigurasiEngine'
 import { KolamMesin } from '../../inti/engine/kolamMesin'
@@ -12,7 +12,16 @@ import { Kartu } from '../../komponen/ui/Kartu'
 import { KolomIsian } from '../../komponen/ui/KolomIsian'
 import { Lencana } from '../../komponen/ui/Lencana'
 import { Tombol } from '../../komponen/ui/Tombol'
-import { BATAS_RUN_KEDUA_MS, jalankanRun, siapkanGameTerakhir, type HasilRun } from './ujiPipeline'
+import type { HasilPenilaian } from '../../inti/penilaian/penilaianPermainan'
+import { LencanaLabel } from '../../komponen/ikon/LencanaLabel'
+import { Tabel } from '../../komponen/ui/Tabel'
+import {
+  BATAS_RUN_KEDUA_MS,
+  jalankanRun,
+  nilaiDanSimpan,
+  siapkanGameTerakhir,
+  type HasilRun,
+} from './ujiPipeline'
 
 const ms = (n: number) => Math.round(n).toLocaleString('id-ID')
 
@@ -27,6 +36,8 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
   const [progres, setProgres] = useState<ProgresAnalisis | null>(null)
   const [run, setRun] = useState<HasilRun[]>([])
   const [galat, setGalat] = useState<string | null>(null)
+  const [penilaian, setPenilaian] = useState<HasilPenilaian | null>(null)
+  const [posisi, setPosisi] = useState<Posisi[]>([])
   const pengendali = useRef<AbortController | null>(null)
 
   async function uji() {
@@ -36,6 +47,7 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
     setGalat(null)
     setRun([])
     setPermainan(null)
+    setPenilaian(null)
     const db = ambilBasisData()
     const kolam = new KolamMesin({
       jumlah: konfigurasi.jumlahWorker,
@@ -44,6 +56,7 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
     try {
       const siap = await siapkanGameTerakhir(ambilKlienChesscom(), db, username, p.signal)
       setPermainan(siap.permainan)
+      setPosisi(siap.posisi)
       await kolam.mulai()
       const hasil: HasilRun[] = []
       for (let i = 0; i < 2; i++) {
@@ -60,6 +73,9 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
         )
         setRun([...hasil])
       }
+      const terakhir = hasil.at(-1)
+      if (terakhir)
+        setPenilaian(await nilaiDanSimpan(db, siap.permainan, siap.posisi, terakhir.hasil))
     } catch (e) {
       setGalat(e instanceof Error ? e.message : String(e))
     } finally {
@@ -139,6 +155,42 @@ export function KartuUjiPipeline({ konfigurasi }: { konfigurasi: KonfigurasiAnal
             </>
           )}
         </dl>
+      )}
+      {permainan && penilaian && (
+        <>
+          <h4>Penilaian MVP ({penilaian.versiAlgoritma})</h4>
+          <dl className="poc__ringkasan">
+            <dt>Akurasi Terbuka (Lichess)</dt>
+            <dd className="teks-mono">
+              putih {penilaian.akurasi.putih?.toFixed(1) ?? '-'} · hitam{' '}
+              {penilaian.akurasi.hitam?.toFixed(1) ?? '-'}
+            </dd>
+            <dt>Akurasi chess.com (API)</dt>
+            <dd className="teks-mono">
+              {permainan.akurasiChessCom
+                ? `putih ${permainan.akurasiChessCom.putih} · hitam ${permainan.akurasiChessCom.hitam}`
+                : 'tidak ada (game belum pernah direview di chess.com)'}
+            </dd>
+          </dl>
+          <Tabel
+            judul="Label per langkah"
+            kolom={[
+              { kunci: 'ply', judul: 'Ply', angka: true },
+              { kunci: 'langkah', judul: 'Langkah' },
+              { kunci: 'label', judul: 'Label' },
+              { kunci: 'poin', judul: 'Poin hilang', angka: true },
+              { kunci: 'terbaik', judul: 'Terbaik engine' },
+            ]}
+            baris={penilaian.label.map((l) => ({
+              ply: l.ply,
+              langkah: `${l.warna === 'w' ? `${Math.ceil(l.ply / 2)}.` : `${Math.ceil(l.ply / 2)}...`} ${posisi.find((p) => p.ply === l.ply)?.langkahSan ?? l.langkahUci}`,
+              label: <LencanaLabel label={l.label} />,
+              poin: l.poinHilang.toFixed(3),
+              terbaik: l.langkahTerbaik ?? '-',
+            }))}
+            kunciBaris={(b) => String(b.ply)}
+          />
+        </>
       )}
     </Kartu>
   )

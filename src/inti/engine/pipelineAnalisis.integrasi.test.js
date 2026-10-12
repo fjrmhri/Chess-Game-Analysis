@@ -10,6 +10,8 @@ import { uraiPgn } from '../pgn/uraiPgn'
 import { gabungKonfigurasi, konfigurasiBawaan } from './konfigurasiAnalisis'
 import { VERSI_ENGINE } from './konfigurasiEngine'
 import { KolamMesin } from './kolamMesin'
+import { KONFIGURASI_PENILAIAN } from '../penilaian/konfigurasiPenilaian'
+import { kelasPenilaianPermainan } from '../penilaian/penilaianPermainan'
 import { mulaiPipeline } from './pipelineAnalisis'
 import { buatSaluranNode } from './saluranNode.uji.js'
 
@@ -63,5 +65,21 @@ describe('pipeline dengan engine asli dan Dexie', () => {
     expect(durasi).toBeLessThan(1000)
     expect(kedua.map((h) => h.garis)).toEqual(pertama.map((h) => h.garis))
     console.log(`P6: ${posisi.length} posisi; run kedua ${durasi.toFixed(0)} ms dari cache`)
+
+    // P7 end-to-end: PGN -> engine -> label + akurasi, lalu klasifikasi ulang tanpa engine
+    const penilaian = kelasPenilaianPermainan(
+      kedua,
+      posisi,
+      permainan.ratingPutih,
+      permainan.ratingHitam,
+      KONFIGURASI_PENILAIAN,
+    )
+    expect(penilaian.label).toHaveLength(posisi.length - 1)
+    expect(penilaian.akurasi.putih).toBeGreaterThan(0)
+    expect(penilaian.akurasi.hitam).toBeGreaterThan(0)
+    expect(penilaian.kurvaEvaluasi.at(-1)).toBe(permainan.hasilPutih === 'win' ? 1 : 0)
+    console.log(
+      `P7: label ${JSON.stringify(penilaian.ringkasan)}; akurasi ${penilaian.akurasi.putih?.toFixed(1)}/${penilaian.akurasi.hitam?.toFixed(1)}`,
+    )
   }, 60_000)
 })

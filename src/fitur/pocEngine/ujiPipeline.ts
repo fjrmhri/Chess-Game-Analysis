@@ -4,15 +4,24 @@ import type { BasisDataTelaah } from '../../inti/data/basisData'
 import {
   ambilPosisiPermainan,
   cacheEvaluasiDexie,
+  simpanHasilAnalisis,
   simpanPermainan,
 } from '../../inti/data/penyimpanan'
 import type { Permainan, Posisi } from '../../inti/data/tipe'
 import type { KonfigurasiAnalisis } from '../../inti/engine/konfigurasiAnalisis'
 import {
   mulaiPipeline,
+  type HasilPosisi,
   type PenyediaPencarian,
   type ProgresAnalisis,
 } from '../../inti/engine/pipelineAnalisis'
+import { KONFIGURASI_PENILAIAN } from '../../inti/penilaian/konfigurasiPenilaian'
+import {
+  kelasPenilaianPermainan,
+  keHasilAnalisis,
+  keLabelTersimpan,
+  type HasilPenilaian,
+} from '../../inti/penilaian/penilaianPermainan'
 import { uraiPgn } from '../../inti/pgn/uraiPgn'
 
 // Kriteria P6: analisis ulang game yang sama dari cache
@@ -44,6 +53,7 @@ export interface HasilRun {
   panggilanEngine: number
   dariCache: number
   total: number
+  hasil: HasilPosisi[]
 }
 
 export async function jalankanRun(
@@ -64,7 +74,7 @@ export async function jalankanRun(
     },
   }
   const mulai = performance.now()
-  await mulaiPipeline({
+  const hasil = await mulaiPipeline({
     posisi,
     penyedia: penghitung,
     cache: cacheEvaluasiDexie(db),
@@ -76,5 +86,30 @@ export async function jalankanRun(
       padaProgres?.(p)
     },
   }).hasil
-  return { waktuMs: performance.now() - mulai, panggilanEngine, dariCache, total: posisi.length }
+  return {
+    waktuMs: performance.now() - mulai,
+    panggilanEngine,
+    dariCache,
+    total: posisi.length,
+    hasil,
+  }
+}
+
+/** Penilaian MVP (P7) dari hasil pipeline, lalu simpan hasil analisis dan label ke Dexie. */
+export async function nilaiDanSimpan(
+  db: BasisDataTelaah,
+  permainan: Permainan,
+  posisi: readonly Posisi[],
+  hasil: readonly HasilPosisi[],
+): Promise<HasilPenilaian> {
+  const penilaian = kelasPenilaianPermainan(
+    hasil,
+    posisi,
+    permainan.ratingPutih,
+    permainan.ratingHitam,
+    KONFIGURASI_PENILAIAN,
+  )
+  await simpanHasilAnalisis(db, keHasilAnalisis(permainan.id, penilaian, Date.now()))
+  await db.labelLangkah.bulkPut(keLabelTersimpan(permainan.id, penilaian))
+  return penilaian
 }
