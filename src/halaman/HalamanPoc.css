@@ -1,0 +1,54 @@
+.poc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-5);
+}
+
+.poc__formulir {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-4);
+  max-width: 32rem;
+}
+
+.poc__aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jarak-3);
+}
+
+.poc__galat {
+  padding: var(--jarak-3);
+  border: var(--garis);
+  background: var(--bahaya);
+  color: var(--teks-pada-aksen);
+  font-weight: 700;
+}
+
+.poc__judul-hasil {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jarak-3);
+}
+
+.poc__ringkasan {
+  display: grid;
+  grid-template-columns: minmax(8rem, max-content) 1fr;
+  gap: var(--jarak-1) var(--jarak-4);
+  margin: 0 0 var(--jarak-4);
+}
+
+.poc__ringkasan dt {
+  font-weight: 700;
+}
+
+.poc__ringkasan dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.poc__alasan {
+  margin: 0 0 var(--jarak-4);
+  padding-left: var(--jarak-5);
+  font-weight: 700;
+}

@@ -66,6 +66,12 @@ Paket tipe `@types/*` dan `csstype` (MIT) hanya dipakai saat kompilasi, tidak di
 - **Dexie.js** — Copyright (c) 2014-2017 David Fahlander. Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0). Distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND.
 - **es-toolkit** — Parts of the test suite and compatibility layer in es-toolkit/compat are derived from Lodash (https://github.com/lodash/lodash). Copyright OpenJS Foundation and other contributors; based on Underscore.js, copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors. MIT License.
 
+## Proxy cadangan (`proxy/`, belum dipasang/di-deploy)
+
+| Paket | Versi | Lisensi | Sumber data |
+|---|---|---|---|
+| wrangler (dev) | 4.149.0 | MIT OR Apache-2.0 | `npm view wrangler` 12 Okt 2026; diverifikasi ulang dari `node_modules` saat dipasang (P15) |
+
 ## Alat pengembangan (tidak dibundel)
 
 | Paket | Versi | Lisensi |

@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "telaah-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-12",
+  "vars": {
+    // Pisahkan dengan koma. Tambahkan origin produksi (*.pages.dev) di P15.
+    "ORIGIN_DIIZINKAN": "http://localhost:5173",
+    // Isi kontak Anda sendiri sebelum deploy (bukan rahasia; terlihat oleh chess.com).
+    "USER_AGENT": "Telaah proxy (proyek pribadi; kontak: ISI_KONTAK_ANDA)"
+  }
+}

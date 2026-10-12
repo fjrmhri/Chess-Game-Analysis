@@ -33,6 +33,20 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - **K4 ESLint.** Ditambah `@eslint/js` dan `globals`; tanpa `eslint-plugin-react-refresh`.
 - **K5 Atribusi.** Pemberitahuan hak cipta Stockfish.js ("(c) Chess.com, LLC") dicantumkan apa adanya di `NOTICE.md` sebagai syarat lisensi, bukan pemakaian merek.
 
+## Keputusan P3 (12 Okt 2026)
+
+- **K1 Kriteria PoC 1 "24 bulan".** Akun `fjrmhrii` hanya punya 3 bulan arsip. PoC 1 diuji dengan `fjrmhrii` (semua arsip, status SEBAGIAN) ditambah akun publik `erik` (24 bulan) untuk syarat 24 request serial tanpa error CORS.
+- **K2 TTL cache.** Semua respons PubAPI (termasuk bulan berjalan) di-cache 12 jam. Pengambilan ulang hanya lewat aksi manual pengguna ("Abaikan cache"/"Muat ulang").
+- **K3 Wrangler.** `proxy/package.json` mengunci `wrangler` 4.149.0 tetapi belum dipasang; pemasangan dan deploy di P15.
+- **K4 Fixture.** Fixture tes = 3 game asli dari arsip `fjrmhrii` 2026/10 (publik, milik pengguna).
+
+## Temuan data PubAPI (TERVERIFIKASI 12 Okt 2026)
+
+- `uuid` ada di 128/128 game `fjrmhrii` → kunci `permainan` = `uuid` (butir 11) sesuai.
+- `accuracies` ada di 18/128 game `fjrmhrii`.
+- Field `eco` berisi URL halaman pembukaan (mis. `https://www.chess.com/openings/Pirc-Defense`), bukan kode ECO; ada di 121/128 game. Kode ECO ada di tag PGN `[ECO]` (128/128).
+- Browser tidak mengekspos header `access-control-allow-origin` ke JavaScript (bukan header CORS-safelisted); `curl` menunjukkan nilainya `*`.
+
 ## Data pengguna
 
 - Username chess.com untuk uji: `fjrmhrii`

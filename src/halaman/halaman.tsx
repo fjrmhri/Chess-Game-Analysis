@@ -34,14 +34,18 @@ export function HalamanPengaturan() {
   return <HalamanSementara judul="Pengaturan" />
 }
 
-export function HalamanPocApi() {
-  return <HalamanSementara judul="PoC API" />
-}
-
 export function HalamanPocEngine() {
   return <HalamanSementara judul="PoC Engine" />
 }
 
 export function HalamanTidakDitemukan() {
   return <HalamanSementara judul="Halaman tidak ditemukan" />
+}
+
+export function HalamanMemuat() {
+  return (
+    <p role="status" className="teks-mono">
+      Memuat…
+    </p>
+  )
 }

@@ -4,26 +4,32 @@ import {
   HalamanKalibrasi,
   HalamanPemain,
   HalamanPengaturan,
-  HalamanPocApi,
   HalamanPocEngine,
   HalamanReview,
+  HalamanMemuat,
   HalamanTidakDitemukan,
 } from './halaman/halaman'
-import { HalamanGaya } from './halaman/HalamanGaya'
 import { TataLetak } from './halaman/TataLetak'
 
 export const daftarRute: RouteObject[] = [
   {
     path: '/',
     Component: TataLetak,
+    HydrateFallback: HalamanMemuat,
     children: [
       { index: true, Component: HalamanBeranda },
       { path: 'pemain/:username', Component: HalamanPemain },
       { path: 'review/:idPermainan', Component: HalamanReview },
       { path: 'kalibrasi', Component: HalamanKalibrasi },
       { path: 'pengaturan', Component: HalamanPengaturan },
-      { path: 'gaya', Component: HalamanGaya },
-      { path: 'poc/api', Component: HalamanPocApi },
+      {
+        path: 'gaya',
+        lazy: async () => ({ Component: (await import('./halaman/HalamanGaya')).HalamanGaya }),
+      },
+      {
+        path: 'poc/api',
+        lazy: async () => ({ Component: (await import('./halaman/HalamanPocApi')).HalamanPocApi }),
+      },
       { path: 'poc/engine', Component: HalamanPocEngine },
       { path: '*', Component: HalamanTidakDitemukan },
     ],
