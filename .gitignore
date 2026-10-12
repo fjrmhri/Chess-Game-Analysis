@@ -1,0 +1,38 @@
+# Dependensi
+node_modules/
+
+# Build
+dist/
+dist-ssr/
+*.local
+*.tsbuildinfo
+
+# Tes dan cakupan
+coverage/
+
+# Log
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Lingkungan dan rahasia
+.env
+.env.*
+!.env.example
+
+# Cloudflare (wrangler)
+.wrangler/
+.dev.vars
+
+# Editor dan OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini
