@@ -53,6 +53,9 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - Setiap instance Wasm lite-single memesan memori awal 128 MB (maks 2048 MB, dari section memory berkas `.wasm`). Di Chromium laptop, Worker ke-7 gagal dengan `WebAssembly.instantiate(): Out of memory` saat commit memory Windows bebas ~1,7 GB.
 - `ucinewgame` + `go nodes N` single-thread deterministik (hasil identik pada dua run, di Node dan browser). Biaya `ucinewgame` per posisi vs sekali per game: +2,3% (24 posisi × 100k node, 1 run).
 - Modul Node `stockfish` berbagi state: hanya satu engine per proses Node.
+- **PoC 2 laptop, browser pengguna (12 Okt 2026, ringkasan ditempel pengguna; userAgent tidak disertakan):** muat engine 154 ms; rata-rata 100k node 165 ms (batas 300 ms) LULUS; percepatan 3 Worker 2,42x (target 2,3x) LULUS; `ucinewgame` per posisi 3.508 ms vs sekali per game 4.024 ms (−12,8%); deterministik. Run headless sebelumnya (369 ms) terjadi saat commit memory Windows tertekan dan tidak dipakai sebagai acuan.
+- **Keputusan turunan:** `ucinewgame` dikirim **per posisi** (KEPUTUSAN butir 6). Biayanya tidak terukur (lebih cepat dalam satu run, dalam batas derau) dan hasilnya tidak bergantung urutan pencarian. Anggaran Tahap A tetap 100k node.
+- PoC 2 HP (vivo Y20sG): UNKNOWN, menunggu benchmark.
 
 ## Temuan data PubAPI (TERVERIFIKASI 12 Okt 2026)
 
