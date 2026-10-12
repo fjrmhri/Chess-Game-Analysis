@@ -89,6 +89,7 @@ Paket tipe `@types/*` dan `csstype` (MIT) hanya dipakai saat kompilasi, tidak di
 | eslint-plugin-react-hooks | 7.1.1 | MIT |
 | globals | 17.13.0 | MIT |
 | prettier | 3.9.10 | MIT |
+| fake-indexeddb | 6.2.5 | Apache-2.0 |
 | @types/node | 24.19.2 | MIT |
 | @types/react, @types/react-dom | 19.3.0 | MIT |
 

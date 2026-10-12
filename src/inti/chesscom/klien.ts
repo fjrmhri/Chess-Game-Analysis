@@ -136,9 +136,10 @@ export function buatKlienChesscom(opsi: OpsiKlien) {
         }
       }
 
-      if (respons.status === 404) {
+      // 404 = tidak ada data; 410 = data tidak akan pernah tersedia (dokumentasi PubAPI)
+      if (respons.status === 404 || respons.status === 410) {
         catat({ ...dasarCatatan, galat: 'PemainTidakDitemukan' })
-        throw new GalatChesscom('PemainTidakDitemukan', 404)
+        throw new GalatChesscom('PemainTidakDitemukan', respons.status)
       }
 
       const bisaDiulang = respons.status === 429 || respons.status >= 500

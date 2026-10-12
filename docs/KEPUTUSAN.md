@@ -48,6 +48,18 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - **K4 Garis MultiPV (ASUMSI, diputuskan saat implementasi).** Garis per multipv = baris `info` terakhir, termasuk lowerbound/upperbound (ditandai `batas`), agar `pv[0]` multipv 1 = `bestmove`. Alternatif "baris tepat terakhir" ditolak karena terukur memberi pv[0] ≠ bestmove (b1c3 vs d2d4).
 - **K5 Vitest `maxWorkers: 4`.** Bawaan (~jumlah core) membuat proses tes kehabisan commit memory Windows saat aplikasi lain memakai RAM.
 
+## Keputusan P5 (12 Okt 2026)
+
+- **K1 Skema.** Tabel data masuk sebagai Dexie **versi 2** (versi 1 = `cacheApi` dari P3); migrasi v1→v2 teruji tanpa kehilangan cache.
+- **K2 Kunci `permainan`.** `id` = `uuid`, atau `url` bila `uuid` tidak ada; tabel turunan memakai `idPermainan`.
+- **K3 Kunci `evaluasi`.** `[fen4+anggaranNodes+multiPv+versiEngine]` (menimpa bentuk `[fen, anggaranNodes, multiPv]` di PROMPTS P5). Evaluasi dengan nodes/MultiPV ≥ diminta dan versi engine sama dipakai ulang; prioritas kecocokan persis, lalu nodes terbesar.
+- **K4 Fixture.** 6 game nyata: 5 dari arsip `fjrmhrii` (mat, menyerah, waktu habis, stalemate, daily tanpa clk) + 1 remis repetisi dari arsip publik `hikaru` 2026/09 (arsip `fjrmhrii` dan `erik` 2026/07–10 tidak punya remis repetisi).
+- **K5 `fake-indexeddb`** 6.2.5 (Apache-2.0) sebagai devDependency untuk tes Dexie.
+- **K6 Ekspor.** Semua tabel kecuali `cacheApi`; impor mode `ganti` (bawaan) atau `gabung`, menolak versi skema lebih baru.
+- `jumlahLangkah` = langkah penuh (`ceil(ply/2)`); `jumlahPly` disimpan terpisah. Field `eco` PubAPI (URL) disimpan di `ecoUrl`, kode ECO dari tag PGN di `eco`.
+- Komentar `[%clk]` dibaca dengan tokenizer sendiri karena chess.js menyimpan komentar per FEN (hilang saat posisi berulang).
+- Kode hasil PubAPI (15, TERVERIFIKASI dari chess.com/news/view/published-data-api): menang `win`; kalah `checkmated, timeout, resigned, lose, abandoned, kingofthehill, threecheck, bughousepartnerlose`; remis `agreed, repetition, stalemate, insufficient, 50move, timevsinsufficient`. HTTP 410 kini diperlakukan sebagai `PemainTidakDitemukan`.
+
 ## Temuan engine (TERVERIFIKASI 12 Okt 2026)
 
 - Setiap instance Wasm lite-single memesan memori awal 128 MB (maks 2048 MB, dari section memory berkas `.wasm`). Di Chromium laptop, Worker ke-7 gagal dengan `WebAssembly.instantiate(): Out of memory` saat commit memory Windows bebas ~1,7 GB.

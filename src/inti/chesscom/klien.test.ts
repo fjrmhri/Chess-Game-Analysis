@@ -194,6 +194,14 @@ describe('klien chess.com', () => {
     expect(log.panggilan).toHaveLength(1)
   })
 
+  it('410 juga PemainTidakDitemukan tanpa retry', async () => {
+    const { klien, log } = buatLingkungan({ [URL_ARSIP]: [json(410)] })
+    const g = await tangkap(klien.ambilDaftarArsip('fjrmhrii'))
+    expect(g.jenis).toBe('PemainTidakDitemukan')
+    expect(g.status).toBe(410)
+    expect(log.panggilan).toHaveLength(1)
+  })
+
   it('cache hit tanpa request; kedaluwarsa setelah 12 jam; abaikanCache memaksa request', async () => {
     const { klien, log, majukanWaktu } = buatLingkungan({
       [URL_ARSIP]: [json(200, arsipFixture), json(200, arsipFixture), json(200, arsipFixture)],
