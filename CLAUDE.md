@@ -3,6 +3,7 @@
 Aplikasi web client-side untuk mereview game chess.com milik sendiri. Pemakaian pribadi, biaya Rp0.
 Nama kerja: "Telaah". Jangan memakai nama, logo, atau tampilan chess.com.
 Spesifikasi lengkap: `docs/BLUEPRINT-RINGKAS.md`. Urutan kerja: `docs/PROMPTS.md`.
+Keputusan terbaru: `docs/KEPUTUSAN.md` (lebih baru, menimpa blueprint dan PROMPTS bila bertentangan). Lisensi proyek: GPLv3 (opsi A, repo publik, situs menautkan source).
 
 ## Prinsip kerja (prioritas: kebenaran > keamanan > instruksi terbaru > format)
 
@@ -11,6 +12,10 @@ Spesifikasi lengkap: `docs/BLUEPRINT-RINGKAS.md`. Urutan kerja: `docs/PROMPTS.md
 - Jika hasil tidak sesuai kriteria lulus, berhenti dan laporkan. Jangan mengubah kriteria agar lulus.
 - Patch minimal. Jangan refactor atau reformat besar di luar lingkup tugas.
 - Tanyakan ke saya (maksimal 3 pertanyaan) hanya jika tebakan salah mahal diulang. Selain itu lanjut dengan asumsi yang ditulis eksplisit.
+
+## Aturan keputusan (permanen)
+
+Setiap ambiguitas, hambatan, atau pertanyaan tidak diajukan sebagai pertanyaan terbuka. Sajikan 2–3 opsi (Opsi A/B/C) dengan trade-off singkat, tandai satu REKOMENDASI beserta alasannya, dan sebut akibat bila tidak dijawab. Jika memblokir: tunggu pilihan saya. Jika tidak memblokir: lanjut dengan REKOMENDASI dan tulis asumsinya di laporan.
 
 ## Lingkungan
 
@@ -58,4 +63,4 @@ Semua gaya lewat token CSS di `src/gaya/token.css`. Tidak ada warna hardcoded di
 1. Jalankan `npm run periksa` (typecheck + lint + test + build). Perbaiki sampai hijau.
 2. Verifikasi kriteria lulus tugas dengan bukti (output tes, angka ukur, screenshot bila UI).
 3. Commit dengan pesan konvensional (`feat:`, `fix:`, `chore:`, `docs:`).
-4. Laporkan ringkas: yang dibuat, bukti verifikasi (TERVERIFIKASI/ASUMSI/UNKNOWN), yang belum beres, dan data yang perlu saya kirim. Jangan lanjut ke tugas berikutnya sebelum saya minta.
+4. Laporkan ringkas: yang dibuat, bukti verifikasi (TERVERIFIKASI/ASUMSI/UNKNOWN), yang belum beres, dan data yang perlu saya kirim. Pertanyaan yang tersisa ditulis dalam format opsi + REKOMENDASI (lihat "Aturan keputusan"). Jangan lanjut ke tugas berikutnya sebelum saya minta.

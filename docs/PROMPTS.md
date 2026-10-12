@@ -7,6 +7,7 @@
 3. Untuk prompt bertanda [RENCANA], minta rencana dulu (mode plan bila tersedia), setujui, baru eksekusi.
 4. Jangan lanjut jika kriteria lulus gagal. Tempel output kegagalan ke sesi yang sama, atau pakai prompt U1 (debugging).
 5. Langkah yang hanya bisa Anda lakukan ditandai [MANUAL].
+6. Setiap ambiguitas, hambatan, atau pertanyaan dari Claude Code harus tampil sebagai pilihan (Opsi A/B/C) dengan satu rekomendasi, sesuai aturan di CLAUDE.md. Jika Claude Code menjawab dengan paragraf bebas, tempel: "Sajikan ulang sebagai opsi sesuai aturan KEPUTUSAN di CLAUDE.md, dengan satu rekomendasi."
 
 Peta fase:
 
@@ -31,7 +32,7 @@ Peta fase:
 - Pasang Node.js LTS dan Git (cek `node -v`, `npm -v`, `git --version` di terminal).
 - Buat repo GitHub kosong (privat boleh) dan akun Cloudflare gratis. Belum perlu dihubungkan.
 - Salin `CLAUDE.md` dan folder `docs/` ke folder proyek (sudah ada bila berkas ini dibuat di sana).
-- Siapkan nama pengguna chess.com Anda untuk uji, dan catat spesifikasi laptop (CPU, RAM) serta model HP.
+- Siapkan nama pengguna chess.com Anda untuk uji. Spesifikasi perangkat (dari DxDiag dan data Anda): laptop ASUS VivoBook M1403QA, AMD Ryzen 7 5800HS (16 thread), RAM 16 GB, Windows 11; HP vivo Y20s [G] (ASUMSI model; RAM 4 atau 6 GB belum dipastikan). Data ini hanya konteks; angka kinerja engine tetap diukur di PoC 2, bukan ditebak dari spesifikasi.
 
 ### P0 — Pemeriksaan awal
 
@@ -42,7 +43,7 @@ Tugas (belum menulis kode aplikasi):
 1. Periksa lingkungan: versi node, npm, git, OS, dan isi folder kerja. Laporkan apa adanya.
 2. Jika folder bukan repo git, jalankan git init, buat .gitignore untuk Node/Vite, dan commit awal berisi CLAUDE.md dan docs/.
 3. Ringkas pemahamanmu dalam maksimal 10 poin: tujuan, batasan, stack, aturan arsitektur, tema desain.
-4. Sebutkan hal di blueprint yang menurutmu ambigu, bertentangan, atau berisiko, beserta usulan keputusan. Maksimal 3 pertanyaan untuk saya, hanya yang benar-benar memblokir.
+4. Sebutkan hal di blueprint yang menurutmu ambigu, bertentangan, atau berisiko. Setiap butir ditulis dalam format KEPUTUSAN (Opsi A/B/C, satu REKOMENDASI, akibat bila tidak dijawab). Maksimal 3 butir yang benar-benar memblokir; sisanya tulis sebagai asumsi dengan opsi rekomendasi.
 
 Jangan memasang dependensi dan jangan membuat berkas selain .gitignore. Ikuti "Penutup standar" kecuali npm run periksa (belum ada).
 ```
