@@ -25,6 +25,14 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 11. **Kunci tabel `permainan`.** `uuid` sebagai primary key; fallback `url` bila `uuid` tidak ada. Keberadaan `uuid` diverifikasi di PoC 1.
 12. **`.gitattributes`.** Isi `* text=auto eol=lf` dan `*.wasm binary`. Dikerjakan di P1.
 
+## Keputusan P1 (12 Okt 2026)
+
+- **K1 Node.** Node.js 24 LTS (terpasang v24.20.0). `package.json` `engines.node` = `>=24`. Alasan: vite 8, vitest 5, react-router 8, jsdom 30, dan eslint 10 menolak Node 22.11.
+- **K2 Varian GPL.** `GPL-3.0-only`, sama dengan field `license` paket `stockfish` 19.0.1 (`"GPL-3.0"`, tanpa klausul "or later" di paket).
+- **K3 TypeScript.** 6.0.3, bukan 7.x, karena peer `typescript-eslint` 8.71.1 = `>=4.8.4 <6.1.0`.
+- **K4 ESLint.** Ditambah `@eslint/js` dan `globals`; tanpa `eslint-plugin-react-refresh`.
+- **K5 Atribusi.** Pemberitahuan hak cipta Stockfish.js ("(c) Chess.com, LLC") dicantumkan apa adanya di `NOTICE.md` sebagai syarat lisensi, bukan pemakaian merek.
+
 ## Data pengguna
 
 - Username chess.com untuk uji: `fjrmhrii`

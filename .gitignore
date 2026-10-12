@@ -27,6 +27,9 @@ pnpm-debug.log*
 .wrangler/
 .dev.vars
 
+# Artefak alat uji browser
+.playwright-mcp/
+
 # Editor dan OS
 .vscode/*
 !.vscode/extensions.json
