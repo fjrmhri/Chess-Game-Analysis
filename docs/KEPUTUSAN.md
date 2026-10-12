@@ -39,6 +39,7 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - Laptop (DxDiag, TERVERIFIKASI): ASUS VivoBook M1403QA, AMD Ryzen 7 5800HS (8 core / 16 thread), RAM 16 GB, Windows 11 Home build 26100, layar 1920x1200 skala 150%.
 - HP: vivo Y20sG. Spesifikasi UNKNOWN; jangan berasumsi, ukur lewat benchmark P4.
 - Identitas git: Fajar / hackinghero01@gmail.com.
+- Repo publik: https://github.com/fjrmhri/Chess-Game-Analysis
 
 ## Aturan keputusan (permanen)
 
