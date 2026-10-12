@@ -2,19 +2,6 @@ import { useParams } from 'react-router'
 import { useIndeksLangkah } from '../pembantu/useIndeksLangkah'
 import { HalamanSementara } from './HalamanSementara'
 
-export function HalamanBeranda() {
-  return <HalamanSementara judul="Telaah" />
-}
-
-export function HalamanPemain() {
-  const { username } = useParams()
-  return (
-    <HalamanSementara judul="Daftar game">
-      <p>Pemain: {username}</p>
-    </HalamanSementara>
-  )
-}
-
 export function HalamanReview() {
   const { idPermainan } = useParams()
   const [indeksLangkah] = useIndeksLangkah()

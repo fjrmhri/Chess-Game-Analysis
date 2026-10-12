@@ -79,6 +79,16 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - Langkah yang tidak ada di MultiPV posisi sebelumnya: epDimainkan = 1 − EP evaluasi posisi sesudahnya.
 - **Hasil nyata (Chromium headless laptop, game `fjrmhrii` vs LJH-2013, 95 ply, 100k node, MultiPV 2):** akurasi Terbuka 94,7 / 88,0 vs `accuracies` API chess.com 93,92 / 83,96 (selisih 0,8 dan 4,0). Label: putih 41 Best, 6 Excellent, 1 Blunder; hitam 24 Best, 16 Excellent, 4 Good, 2 Inaccuracy, 1 Blunder. Book belum ada (P10) sehingga langkah pembukaan berlabel Best/Excellent.
 
+## Keputusan dan temuan P8 (12 Okt 2026)
+
+- **K1** Metadata game disimpan ke Dexie saat daftar dimuat; status analisis dibaca dari `hasilAnalisis` untuk `VERSI_ALGORITMA` saat ini.
+- **K2** Muat otomatis dari bulan terbaru sampai ≥ 20 game atau 3 bulan; selebihnya tombol "Muat bulan lebih lama"; filter bulan yang belum dimuat memuat bulan itu.
+- **K3** Tabel (≥ 64rem) dan kartu (< 64rem) dirender keduanya, satu disembunyikan CSS.
+- Tombol "Perbarui dari chess.com" mengambil ulang daftar arsip + bulan terbaru melewati cache 12 jam (aksi manual, sesuai P3-K2).
+- PGN ekspor Game Review chess.com **tidak memuat label, akurasi, maupun jam** (TERVERIFIKASI dari berkas yang diunduh pengguna); pencocokan label PoC 3 lewat isian manual di P11.
+- PubAPI memberi `url`/`[Link]` `/game/daily/ID` untuk game "Play vs Coach"; halaman sebenarnya `/game/coach/ID` (diperbaiki di tampilan dan ekspor PGN).
+- Game Coach-David (12 Okt 2026, daily, 52 langkah): akurasi Telaah mode Terbuka 72,2 / 78,2 vs `accuracies` API 54,4 / 63,9 (selisih 17,8 / 14,3; **di atas batas 10** PoC 3). Game LJH-2013: selisih 0,8 / 4,0. Penyebab UNKNOWN; dievaluasi di P11 (mode akurasi mirip chess.com).
+
 ## Temuan engine (TERVERIFIKASI 12 Okt 2026)
 
 - Setiap instance Wasm lite-single memesan memori awal 128 MB (maks 2048 MB, dari section memory berkas `.wasm`). Di Chromium laptop, Worker ke-7 gagal dengan `WebAssembly.instantiate(): Out of memory` saat commit memory Windows bebas ~1,7 GB.

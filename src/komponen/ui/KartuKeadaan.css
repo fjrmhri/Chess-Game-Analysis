@@ -1,0 +1,58 @@
+.kartu-keadaan {
+  display: flex;
+  gap: var(--jarak-4);
+  align-items: flex-start;
+  padding: var(--jarak-4);
+  border: var(--garis);
+  background: var(--permukaan);
+  color: var(--tinta);
+  box-shadow: var(--bayangan);
+}
+
+.kartu-keadaan__simbol {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: var(--garis);
+  color: var(--teks-pada-aksen);
+  font-family: var(--font-judul);
+  font-size: var(--ukuran-xl);
+  font-weight: var(--tebal-judul);
+}
+
+.kartu-keadaan--memuat .kartu-keadaan__simbol {
+  background: var(--aksen-ketiga);
+}
+
+.kartu-keadaan--kosong .kartu-keadaan__simbol {
+  background: var(--aksen-utama);
+}
+
+.kartu-keadaan--galat .kartu-keadaan__simbol {
+  background: var(--bahaya);
+}
+
+.kartu-keadaan__isi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-3);
+  min-width: 0;
+  flex: 1;
+}
+
+.kartu-keadaan__judul {
+  margin: 0;
+  font-size: var(--ukuran-l);
+}
+
+.kartu-keadaan__isi > p {
+  margin: 0;
+}
+
+.kartu-keadaan__aksi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jarak-3);
+}

@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { createMemoryRouter } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { daftarRute } from './ruteAplikasi'
 
 function renderRute(url: string) {
@@ -9,12 +9,22 @@ function renderRute(url: string) {
   render(<RouterProvider router={router} />)
 }
 
-afterEach(cleanup)
+// Tes rute tidak boleh menyentuh jaringan: fetch tidak pernah selesai
+beforeEach(() =>
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(() => new Promise(() => undefined)),
+  ),
+)
+afterEach(() => {
+  cleanup()
+  vi.unstubAllGlobals()
+})
 
 describe('daftarRute', () => {
   it.each([
     ['/', 'Telaah'],
-    ['/pemain/fjrmhrii', 'Daftar game'],
+    ['/pemain/fjrmhrii', 'fjrmhrii'],
     ['/review/abc', 'Review'],
     ['/kalibrasi', 'Kalibrasi'],
     ['/pengaturan', 'Pengaturan'],

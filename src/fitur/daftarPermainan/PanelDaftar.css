@@ -1,0 +1,92 @@
+.panel-daftar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-4);
+}
+
+.panel-daftar__filter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: var(--jarak-3) var(--jarak-4);
+  align-items: end;
+  padding: var(--jarak-4);
+  border: var(--garis);
+  background: var(--permukaan);
+  box-shadow: var(--bayangan);
+}
+
+.panel-daftar__reset {
+  display: flex;
+  align-items: flex-end;
+}
+
+.panel-daftar__nonaktif {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--jarak-1);
+  font-size: var(--ukuran-xs);
+}
+
+a.tombol {
+  text-decoration: none;
+}
+
+.panel-daftar__kartu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel-daftar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jarak-2);
+  padding: var(--jarak-3);
+  border: var(--garis);
+  background: var(--permukaan);
+  box-shadow: var(--bayangan);
+}
+
+.panel-daftar__baris {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--jarak-2);
+  width: 100%;
+}
+
+.panel-daftar__meta {
+  font-size: var(--ukuran-s);
+  color: var(--tinta-redup);
+}
+
+.panel-daftar__paginasi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--jarak-4);
+}
+
+/* KEPUTUSAN P8-K3: tabel di desktop, kartu di HP; yang tersembunyi tidak dibaca pembaca layar */
+.panel-daftar__tabel {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .panel-daftar__tabel {
+    display: block;
+  }
+
+  .panel-daftar__kartu {
+    display: none;
+  }
+}
+
+.panel-daftar__tabel td:first-child {
+  white-space: nowrap;
+}

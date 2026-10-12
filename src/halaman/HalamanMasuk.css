@@ -1,0 +1,34 @@
+.halaman-masuk {
+  display: flex;
+  flex-direction: column;
+  gap: var(--jarak-6);
+  max-width: 40rem;
+}
+
+.halaman-masuk__lead {
+  font-size: var(--ukuran-l);
+}
+
+.halaman-masuk__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--jarak-4);
+}
+
+.halaman-masuk__form .medan {
+  width: 100%;
+}
+
+.halaman-masuk__terakhir {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--jarak-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.halaman-masuk__terakhir a {
+  text-decoration: none;
+}

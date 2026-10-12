@@ -1,13 +1,12 @@
 import type { RouteObject } from 'react-router'
 import {
-  HalamanBeranda,
   HalamanKalibrasi,
-  HalamanPemain,
   HalamanPengaturan,
   HalamanReview,
   HalamanMemuat,
   HalamanTidakDitemukan,
 } from './halaman/halaman'
+import { HalamanMasuk } from './halaman/HalamanMasuk'
 import { TataLetak } from './halaman/TataLetak'
 
 export const daftarRute: RouteObject[] = [
@@ -16,8 +15,13 @@ export const daftarRute: RouteObject[] = [
     Component: TataLetak,
     HydrateFallback: HalamanMemuat,
     children: [
-      { index: true, Component: HalamanBeranda },
-      { path: 'pemain/:username', Component: HalamanPemain },
+      { index: true, Component: HalamanMasuk },
+      {
+        path: 'pemain/:username',
+        lazy: async () => ({
+          Component: (await import('./halaman/HalamanDaftarPermainan')).HalamanDaftarPermainan,
+        }),
+      },
       { path: 'review/:idPermainan', Component: HalamanReview },
       { path: 'kalibrasi', Component: HalamanKalibrasi },
       { path: 'pengaturan', Component: HalamanPengaturan },
