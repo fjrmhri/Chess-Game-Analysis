@@ -46,6 +46,17 @@ describe('buatPgnBeranotasi', () => {
     expect(pgn).not.toContain('[%clk')
   })
 
+  it('tag [Link] bisa diganti', () => {
+    const p = buatPgnBeranotasi({
+      pgnAsli: '[Link "https://www.chess.com/game/daily/1"]\n[Result "*"]',
+      langkah: [],
+      versiAlgoritma: 'v',
+      tautan: 'https://www.chess.com/game/coach/1',
+    })
+    expect(p).toContain('[Link "https://www.chess.com/game/coach/1"]')
+    expect(p).not.toContain('game/daily')
+  })
+
   it('mulai dari giliran hitam', () => {
     const p = buatPgnBeranotasi({
       pgnAsli: '[Result "*"]',

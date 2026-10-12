@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { tautanPermainan } from '../../inti/chesscom/tautanPermainan'
 import type { Permainan, Posisi } from '../../inti/data/tipe'
 import { DAFTAR_LABEL, NAMA_LABEL } from '../../inti/penilaian/label'
 import type { HasilPenilaian } from '../../inti/penilaian/penilaianPermainan'
@@ -54,6 +55,7 @@ export function BagianPenilaian({
       giliranAwal: awal.giliran,
       versiAlgoritma: penilaian.versiAlgoritma,
       akurasi: penilaian.akurasi,
+      tautan: tautanPermainan(permainan.url, permainan.pgn),
     })
   }, [permainan, posisi, penilaian])
 

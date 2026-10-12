@@ -26,6 +26,8 @@ export interface OpsiPgnBeranotasi {
   giliranAwal?: 'w' | 'b'
   versiAlgoritma: string
   akurasi?: { putih: number | undefined; hitam: number | undefined }
+  /** Mengganti tag [Link] (mis. tautan game Coach yang sudah diperbaiki). */
+  tautan?: string
 }
 
 function bersihkanKomentar(teks: string): string {
@@ -48,7 +50,9 @@ export function buatPgnBeranotasi(opsi: OpsiPgnBeranotasi): string {
       ? []
       : [`[TelaahAkurasiHitam "${opsi.akurasi.hitam.toFixed(1)}"]`]),
   ]
-  const tanpaAnnotator = header.filter((b) => !b.startsWith('[Annotator '))
+  const tanpaAnnotator = header
+    .filter((b) => !b.startsWith('[Annotator '))
+    .map((b) => (opsi.tautan && b.startsWith('[Link ') ? `[Link "${opsi.tautan}"]` : b))
 
   const urut = [...opsi.langkah].sort((a, b) => a.ply - b.ply)
   const nomorAwal = opsi.nomorAwal ?? 1
