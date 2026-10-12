@@ -1,33 +1,9 @@
 // @vitest-environment node
 // Tes integrasi dengan engine asli (stockfish lite-single di Node). Berkas JS karena memakai API Node.
-// Satu proses anak per engine: modul Node stockfish berbagi state sehingga tidak bisa dibuat dua kali per proses.
-import { spawn } from 'node:child_process'
-import { createRequire } from 'node:module'
-import { createInterface } from 'node:readline'
 import { afterAll, describe, expect, it } from 'vitest'
 import { KolamMesin } from './kolamMesin'
 import { MesinCatur } from './mesinCatur'
-
-const require = createRequire(import.meta.url)
-const jalurEngine = require('stockfish').findEngine('lite-single')
-
-function buatSaluranNode() {
-  let pendengar = () => undefined
-  let pendengarGalat = () => undefined
-  const anak = spawn(process.execPath, [jalurEngine], { stdio: ['pipe', 'pipe', 'inherit'] })
-  createInterface({ input: anak.stdout }).on('line', (b) => b && pendengar(b))
-  anak.on('error', (e) => pendengarGalat(e))
-  return {
-    kirim: (perintah) => anak.stdin.write(`${perintah}\n`),
-    padaBaris: (p) => {
-      pendengar = p
-    },
-    padaGalat: (p) => {
-      pendengarGalat = p
-    },
-    tutup: () => anak.kill(),
-  }
-}
+import { buatSaluranNode } from './saluranNode.uji.js'
 
 const FEN_ITALIA = 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3'
 const FEN_MAT_1 = '6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1'

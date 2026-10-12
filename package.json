@@ -17,7 +17,7 @@
     "preview": "vite preview",
     "test": "npm run test:unit && npm run test:engine",
     "test:unit": "vitest run --exclude \"**/*.integrasi.test.*\"",
-    "test:engine": "vitest run src/inti/engine/mesinCatur.integrasi.test.js",
+    "test:engine": "vitest run .integrasi.test --no-file-parallelism",
     "lint": "eslint .",
     "tipe": "tsc -b",
     "format": "prettier --write .",

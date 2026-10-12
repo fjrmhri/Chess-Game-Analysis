@@ -60,6 +60,16 @@ Dokumen ini lebih baru dari `docs/BLUEPRINT-RINGKAS.md` dan `docs/PROMPTS.md`. J
 - Komentar `[%clk]` dibaca dengan tokenizer sendiri karena chess.js menyimpan komentar per FEN (hilang saat posisi berulang).
 - Kode hasil PubAPI (15, TERVERIFIKASI dari chess.com/news/view/published-data-api): menang `win`; kalah `checkmated, timeout, resigned, lose, abandoned, kingofthehill, threecheck, bughousepartnerlose`; remis `agreed, repetition, stalemate, insufficient, 50move, timevsinsufficient`. HTTP 410 kini diperlakukan sebagai `PemainTidakDitemukan`.
 
+## Keputusan P6 (12 Okt 2026)
+
+- **K1 Keluaran.** Callback `padaHasil`/`padaProgres` + Promise semua hasil; `aturFokus(ply)` mengubah prioritas di tengah jalan.
+- **K2 Bukti kriteria.** Tes integrasi otomatis (engine asli di Node + Dexie) dan kartu "Uji pipeline" di `/poc/engine`.
+- **K3 Anggaran tes otomatis** 20.000 node; konfigurasi asli 100.000 diuji di browser.
+- Posisi terminal: mat = `mate 0` (pemain yang melangkah kalah), remis menurut aturan = `cp 0`; evaluasi sintetis tidak di-cache.
+- Galat engine pada satu posisi menghentikan seluruh pipeline (ASUMSI; tombol "Analisis ulang" di P9).
+- ASUMSI di `konfigurasiAnalisis.ts`: batas posisi kritis Tahap B 12 (laptop) / 6 (HP); penentu posisi kritis bawaan kosong sampai P10/P11.
+- **Hasil (TERVERIFIKASI 12 Okt 2026):** Node, game `mat-saya-kalah` 25 posisi, 20k node, 2 engine: run kedua 13 ms dari cache, 0 panggilan engine. Chromium headless laptop (build produksi), game terakhir `fjrmhrii` 95 ply, 100k node, MultiPV 2, 4 Worker: run 1 6.952 ms (95 posisi engine), run 2 100 ms dari cache, 0 panggilan engine.
+
 ## Temuan engine (TERVERIFIKASI 12 Okt 2026)
 
 - Setiap instance Wasm lite-single memesan memori awal 128 MB (maks 2048 MB, dari section memory berkas `.wasm`). Di Chromium laptop, Worker ke-7 gagal dengan `WebAssembly.instantiate(): Out of memory` saat commit memory Windows bebas ~1,7 GB.

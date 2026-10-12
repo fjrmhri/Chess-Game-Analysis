@@ -1,5 +1,6 @@
 import { Dexie } from 'dexie'
 import type { HasilCari } from '../engine/mesinCatur'
+import type { CacheEvaluasi } from '../engine/pipelineAnalisis'
 import type { GarisHasil } from '../engine/uci'
 import { fen4 } from '../pgn/fen'
 import type { LangkahPgn } from '../pgn/uraiPgn'
@@ -161,4 +162,15 @@ export async function ambilHasilAnalisis(
   versiAlgoritma: string,
 ): Promise<HasilAnalisis | undefined> {
   return db.hasilAnalisis.get([idPermainan, versiAlgoritma])
+}
+
+export function cacheEvaluasiDexie(db: BasisDataTelaah): CacheEvaluasi {
+  return {
+    ambil: (fen, nodes, multiPv, versiEngine) =>
+      ambilEvaluasi(db, fen, nodes, multiPv, versiEngine),
+    simpan: async (hasil) => {
+      await simpanEvaluasi(db, hasil)
+    },
+    keGaris: (evaluasi) => evaluasi.garis.map(garisDariTersimpan),
+  }
 }

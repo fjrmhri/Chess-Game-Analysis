@@ -12,6 +12,8 @@ import {
   type HasilUcinewgame,
 } from '../fitur/pocEngine/benchmark'
 import { posisiOpera, POSISI_BENCHMARK } from '../fitur/pocEngine/posisiUji'
+import { KartuUjiPipeline } from '../fitur/pocEngine/KartuUjiPipeline'
+import { konfigurasiBawaan } from '../inti/engine/konfigurasiAnalisis'
 import { jumlahWorkerBawaan, urlEngine, VERSI_ENGINE } from '../inti/engine/konfigurasiEngine'
 import { GalatEngine } from '../inti/engine/mesinCatur'
 import { buatSaluranWorker } from '../inti/engine/saluran'
@@ -119,6 +121,8 @@ export function HalamanPocEngine() {
           <dd className="teks-mono">{navigator.userAgent}</dd>
         </dl>
       </Kartu>
+
+      <KartuUjiPipeline konfigurasi={konfigurasiBawaan(hc, seluler)} />
 
       <div className="poc__aksi">
         <Tombol onClick={() => void jalankan()} disabled={berjalan}>

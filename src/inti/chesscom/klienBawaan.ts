@@ -1,4 +1,5 @@
-import { bukaBasisData, CacheDexie } from '../data/basisData'
+import { CacheDexie } from '../data/basisData'
+import { ambilBasisData } from '../data/basisDataBawaan'
 import { AntreanSerial } from './antrean'
 import { buatKlienChesscom, type KlienChesscom, type OpsiKlien } from './klien'
 
@@ -7,7 +8,7 @@ let cacheBersama: CacheDexie | undefined
 let klienBersama: KlienChesscom | undefined
 
 function opsiBawaan(): OpsiKlien {
-  cacheBersama ??= new CacheDexie(bukaBasisData())
+  cacheBersama ??= new CacheDexie(ambilBasisData())
   const urlProxy = import.meta.env.VITE_URL_PROXY?.trim()
   return { cache: cacheBersama, antrean: antreanBersama, urlProxy: urlProxy || undefined }
 }

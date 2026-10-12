@@ -52,3 +52,7 @@
   padding-left: var(--jarak-5);
   font-weight: 700;
 }
+
+.kartu .poc__formulir {
+  margin-bottom: var(--jarak-4);
+}
